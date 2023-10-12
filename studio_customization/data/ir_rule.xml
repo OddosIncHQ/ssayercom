@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="studio_customization.oddos_fin700_multi_c_01ea56ce-3b13-492b-bd58-b6a32614a4c2" model="ir.rule" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="domain_force"><![CDATA[['|', ('x_studio_company_id', '=', False), ('x_studio_company_id', 'in', company_ids)]]]></field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="model_id" ref="studio_customization.oddos_fin700_36c9bac4-8e03-4732-8802-a5b4ea0eb483"/>
+    <field name="name">Oddos Fin700 - Multi-Company</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+</odoo>

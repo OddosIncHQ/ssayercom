@@ -1,0 +1,1134 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="studio_customization.active_entity_4b4014cd-e210-4a13-a31e-58b73b0b738e" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Active</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_entity</field>
+    <field name="model_id" ref="studio_customization.entity_3188f9f6-e5fe-4b07-99aa-3024ca5a1377"/>
+    <field name="name">x_active</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking">1</field>
+    <field name="translate" eval="False"/>
+    <field name="ttype">boolean</field>
+  </record>
+  <record id="studio_customization.active_oddos_fin700_f872e066-5022-4d0a-9440-d0243cd82606" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Active</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_oddos_fin700</field>
+    <field name="model_id" ref="studio_customization.oddos_fin700_36c9bac4-8e03-4732-8802-a5b4ea0eb483"/>
+    <field name="name">x_active</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking">1</field>
+    <field name="translate" eval="False"/>
+    <field name="ttype">boolean</field>
+  </record>
+  <record id="studio_customization.color_oddos_fin700_3c8b762c-bce5-483a-97eb-28ecab780974" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Color</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_oddos_fin700</field>
+    <field name="model_id" ref="studio_customization.oddos_fin700_36c9bac4-8e03-4732-8802-a5b4ea0eb483"/>
+    <field name="name">x_color</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">integer</field>
+  </record>
+  <record id="studio_customization.color_oddos_fin700_t_5463866b-47d1-47e9-afa8-81a676446093" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Color</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_oddos_fin700_tag</field>
+    <field name="model_id" ref="studio_customization.oddos_fin700_tags_3c79e1d3-2a96-4410-8fe4-60c03d681b17"/>
+    <field name="name">x_color</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">integer</field>
+  </record>
+  <record id="studio_customization.company_oddos_fin700_9f757594-8d1e-499a-8911-4915e4ae49b0" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Company</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_oddos_fin700</field>
+    <field name="model_id" ref="studio_customization.oddos_fin700_36c9bac4-8e03-4732-8802-a5b4ea0eb483"/>
+    <field name="name">x_studio_company_id</field>
+    <field name="on_delete">set null</field>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation">res.company</field>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking">1</field>
+    <field name="translate" eval="False"/>
+    <field name="ttype">many2one</field>
+  </record>
+  <record id="studio_customization.contact_companies_08f31582-b570-44e1-9583-3a5936e40589" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Contact</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">res.company</field>
+    <field name="model_id" ref="base.model_res_company"/>
+    <field name="name">x_studio_many2one_field_3Wkgw</field>
+    <field name="on_delete">set null</field>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation">res.partner</field>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">many2one</field>
+  </record>
+  <record id="studio_customization.contact_entity_39e33679-1780-4d43-8062-941dade5372d" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Registered Name</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_entity</field>
+    <field name="model_id" ref="studio_customization.entity_3188f9f6-e5fe-4b07-99aa-3024ca5a1377"/>
+    <field name="name">x_studio_registered_name</field>
+    <field name="on_delete">set null</field>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation">res.partner</field>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">many2one</field>
+  </record>
+  <record id="studio_customization.contact_entity_8972a978-170c-4a58-9b7a-e12879fe9a5c" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Entity Name</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_entity</field>
+    <field name="model_id" ref="studio_customization.entity_3188f9f6-e5fe-4b07-99aa-3024ca5a1377"/>
+    <field name="name">x_studio_many2one_field_h3DX8</field>
+    <field name="on_delete">set null</field>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation">res.partner</field>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">many2one</field>
+  </record>
+  <record id="studio_customization.currency_oddos_fin70_235db7e2-64e2-4822-b6e4-6976ef642d95" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Currency</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_oddos_fin700</field>
+    <field name="model_id" ref="studio_customization.oddos_fin700_36c9bac4-8e03-4732-8802-a5b4ea0eb483"/>
+    <field name="name">x_studio_currency_id</field>
+    <field name="on_delete">set null</field>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation">res.currency</field>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">many2one</field>
+  </record>
+  <record id="studio_customization.description_entity_289fddef-ceea-4f9f-ba0c-dce2d237d9f4" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Entity Details</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="True"/>
+    <field name="model">x_entity</field>
+    <field name="model_id" ref="studio_customization.entity_3188f9f6-e5fe-4b07-99aa-3024ca5a1377"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="True"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking">1</field>
+    <field name="translate" eval="True"/>
+    <field name="ttype">char</field>
+  </record>
+  <record id="studio_customization.description_oddos_fi_e9718171-095f-472e-9591-6d3c680be332" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Description</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_oddos_fin700_line_89b70</field>
+    <field name="model_id" ref="studio_customization.oddos_fin700_line_7650f872-e796-47ad-98dd-5fbfdd49bc24"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="True"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="True"/>
+    <field name="ttype">char</field>
+  </record>
+  <record id="studio_customization.description_oddos_fi_f4da9074-9ee4-4e9a-b56d-fd57253bbe9a" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Description</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_oddos_fin700</field>
+    <field name="model_id" ref="studio_customization.oddos_fin700_36c9bac4-8e03-4732-8802-a5b4ea0eb483"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="True"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking">1</field>
+    <field name="translate" eval="True"/>
+    <field name="ttype">char</field>
+  </record>
+  <record id="studio_customization.description_res_comp_4e73b630-5912-4f38-80c2-d099b7fff57a" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Description</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_res_company_line_f154a</field>
+    <field name="model_id" ref="studio_customization.res_company_line_481e1c6d-a36c-498b-b21e-a71f1b22e34b"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="True"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="True"/>
+    <field name="ttype">char</field>
+  </record>
+  <record id="studio_customization.high_priority_oddos__a0f0a565-bc16-40c0-9719-b026a7103105" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">High Priority</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_oddos_fin700</field>
+    <field name="model_id" ref="studio_customization.oddos_fin700_36c9bac4-8e03-4732-8802-a5b4ea0eb483"/>
+    <field name="name">x_studio_priority</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">boolean</field>
+  </record>
+  <record id="studio_customization.kanban_state_oddos_f_d7a75232-f420-4a32-b615-eee5f645a7de" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Kanban State</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_oddos_fin700</field>
+    <field name="model_id" ref="studio_customization.oddos_fin700_36c9bac4-8e03-4732-8802-a5b4ea0eb483"/>
+    <field name="name">x_studio_kanban_state</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection">[('normal', 'In Progress'), ('done', 'Ready'), ('blocked', 'Blocked')]</field>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">selection</field>
+  </record>
+  <record id="studio_customization.name_oddos_fin700_ta_774ea096-476a-41be-84e2-261dc1043a69" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Name</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_oddos_fin700_tag</field>
+    <field name="model_id" ref="studio_customization.oddos_fin700_tags_3c79e1d3-2a96-4410-8fe4-60c03d681b17"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="True"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">char</field>
+  </record>
+  <record id="studio_customization.new_decimal_res_comp_6c600561-bf37-480a-a1c4-b413e1b7fc4a" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Equity PerCent</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_res_company_line_f154a</field>
+    <field name="model_id" ref="studio_customization.res_company_line_481e1c6d-a36c-498b-b21e-a71f1b22e34b"/>
+    <field name="name">x_studio_equity_percent</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">float</field>
+  </record>
+  <record id="studio_customization.new_integer_res_comp_e94919cf-9541-4e55-a2d2-7e50259cf62b" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Total Shares</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_res_company_line_f154a</field>
+    <field name="model_id" ref="studio_customization.res_company_line_481e1c6d-a36c-498b-b21e-a71f1b22e34b"/>
+    <field name="name">x_studio_total_shares</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">integer</field>
+  </record>
+  <record id="studio_customization.res_company_line_70ff5ae1-fae1-4c17-94e9-e834ec8411b3" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Company/Partner</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_res_company_line_f154a</field>
+    <field name="model_id" ref="studio_customization.res_company_line_481e1c6d-a36c-498b-b21e-a71f1b22e34b"/>
+    <field name="name">x_res_company_id</field>
+    <field name="on_delete">set null</field>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation">res.company</field>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">many2one</field>
+  </record>
+  <record id="studio_customization.new_lines_companies_0e5312f9-e420-430d-86ba-d8eb1d1b24a4" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="False"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Company</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">res.company</field>
+    <field name="model_id" ref="base.model_res_company"/>
+    <field name="name">x_studio_company</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation">x_res_company_line_f154a</field>
+    <field name="relation_field">x_res_company_id</field>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">one2many</field>
+  </record>
+  <record id="studio_customization.oddos_fin700_line_60eb08ad-8fd5-44a6-88ed-8f78d1c2a7d6" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">X Oddos Fin700</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_oddos_fin700_line_89b70</field>
+    <field name="model_id" ref="studio_customization.oddos_fin700_line_7650f872-e796-47ad-98dd-5fbfdd49bc24"/>
+    <field name="name">x_oddos_fin700_id</field>
+    <field name="on_delete">set null</field>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation">x_oddos_fin700</field>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">many2one</field>
+  </record>
+  <record id="studio_customization.new_lines_oddos_fin7_ffe9826b-1594-427e-85fc-d6e83bde6071" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="False"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">New Lines</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_oddos_fin700</field>
+    <field name="model_id" ref="studio_customization.oddos_fin700_36c9bac4-8e03-4732-8802-a5b4ea0eb483"/>
+    <field name="name">x_oddos_fin700_line_ids_588e0</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation">x_oddos_fin700_line_89b70</field>
+    <field name="relation_field">x_oddos_fin700_id</field>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">one2many</field>
+  </record>
+  <record id="studio_customization.new_related_field_re_ac596689-dd0f-4f58-9db7-f208f7f1ba43" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="False"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">VAT ID</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_res_company_line_f154a</field>
+    <field name="model_id" ref="studio_customization.res_company_line_481e1c6d-a36c-498b-b21e-a71f1b22e34b"/>
+    <field name="name">x_studio_vat_id_1</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="True"/>
+    <field name="related">x_res_company_id.partner_id.vat</field>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">char</field>
+  </record>
+  <record id="studio_customization.new_related_field_re_b4218881-1dfe-400b-bf66-e552a025fca7" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="False"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">VAT ID</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_res_company_line_f154a</field>
+    <field name="model_id" ref="studio_customization.res_company_line_481e1c6d-a36c-498b-b21e-a71f1b22e34b"/>
+    <field name="name">x_studio_vat_id</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="True"/>
+    <field name="related">x_res_company_id.vat_check_vies</field>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">boolean</field>
+  </record>
+  <record id="studio_customization.new_text_companies_e1dafa56-db85-46c5-9b4e-7c704366e844" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">X Studio Compay Composition</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">res.company</field>
+    <field name="model_id" ref="base.model_res_company"/>
+    <field name="name">x_studio_compay_composition</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">char</field>
+  </record>
+  <record id="studio_customization.new_text_entity_137d33b8-cab1-4661-8e2a-cd609c5d8fcf" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Fiscal Entity Number</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_entity</field>
+    <field name="model_id" ref="studio_customization.entity_3188f9f6-e5fe-4b07-99aa-3024ca5a1377"/>
+    <field name="name">x_studio_fiscal_entity_number</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">char</field>
+  </record>
+  <record id="studio_customization.new_text_entity_6663eec8-b1a6-46bd-a3b9-84675e66a8c0" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Type</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_entity</field>
+    <field name="model_id" ref="studio_customization.entity_3188f9f6-e5fe-4b07-99aa-3024ca5a1377"/>
+    <field name="name">x_studio_type</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">char</field>
+  </record>
+  <record id="studio_customization.new_text_entity_a7ae22c8-529a-45f3-afc3-d8891c0f264b" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Name</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_entity</field>
+    <field name="model_id" ref="studio_customization.entity_3188f9f6-e5fe-4b07-99aa-3024ca5a1377"/>
+    <field name="name">x_studio_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">char</field>
+  </record>
+  <record id="studio_customization.notes_oddos_fin700_413dab97-756f-4269-a5ce-f15f3490af18" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Notes</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_oddos_fin700</field>
+    <field name="model_id" ref="studio_customization.oddos_fin700_36c9bac4-8e03-4732-8802-a5b4ea0eb483"/>
+    <field name="name">x_studio_notes</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">html</field>
+  </record>
+  <record id="studio_customization.responsible_oddos_fi_b5e35829-dc11-4aeb-8f81-4f8c25450815" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[('share', '=', False)]</field>
+    <field name="field_description">Responsible</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_oddos_fin700</field>
+    <field name="model_id" ref="studio_customization.oddos_fin700_36c9bac4-8e03-4732-8802-a5b4ea0eb483"/>
+    <field name="name">x_studio_user_id</field>
+    <field name="on_delete">set null</field>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation">res.users</field>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking">1</field>
+    <field name="translate" eval="False"/>
+    <field name="ttype">many2one</field>
+  </record>
+  <record id="studio_customization.sequence_entity_edc194b8-67aa-4f40-8fb6-1d1170d0ac0b" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Sequence</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_entity</field>
+    <field name="model_id" ref="studio_customization.entity_3188f9f6-e5fe-4b07-99aa-3024ca5a1377"/>
+    <field name="name">x_studio_sequence</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">integer</field>
+  </record>
+  <record id="studio_customization.sequence_oddos_fin70_08af6a08-41f9-45c3-8555-b6671a9c801e" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Sequence</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_oddos_fin700_stage</field>
+    <field name="model_id" ref="studio_customization.oddos_fin700_stages_4f8c3f70-437e-41fa-b4d4-a450e6d4baf3"/>
+    <field name="name">x_studio_sequence</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">integer</field>
+  </record>
+  <record id="studio_customization.sequence_oddos_fin70_43790e47-8906-41cb-bc3e-6081aa78a620" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Sequence</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_oddos_fin700</field>
+    <field name="model_id" ref="studio_customization.oddos_fin700_36c9bac4-8e03-4732-8802-a5b4ea0eb483"/>
+    <field name="name">x_studio_sequence</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">integer</field>
+  </record>
+  <record id="studio_customization.sequence_oddos_fin70_63723e36-6d4d-4c7a-9aa3-48a030e852dd" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Sequence</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_oddos_fin700_line_89b70</field>
+    <field name="model_id" ref="studio_customization.oddos_fin700_line_7650f872-e796-47ad-98dd-5fbfdd49bc24"/>
+    <field name="name">x_studio_sequence</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">integer</field>
+  </record>
+  <record id="studio_customization.sequence_res_company_33969c0e-a0eb-480f-9fa4-c8d959b0625d" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Sequence</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_res_company_line_f154a</field>
+    <field name="model_id" ref="studio_customization.res_company_line_481e1c6d-a36c-498b-b21e-a71f1b22e34b"/>
+    <field name="name">x_studio_sequence</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">integer</field>
+  </record>
+  <record id="studio_customization.stage_name_oddos_fin_599941ce-e597-4134-a001-64abae98823a" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Stage Name</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_oddos_fin700_stage</field>
+    <field name="model_id" ref="studio_customization.oddos_fin700_stages_4f8c3f70-437e-41fa-b4d4-a450e6d4baf3"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="True"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="True"/>
+    <field name="ttype">char</field>
+  </record>
+  <record id="studio_customization.stage_oddos_fin700_2a735105-4d2d-4791-a2bc-76d3368e9cfb" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Stage</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_oddos_fin700</field>
+    <field name="model_id" ref="studio_customization.oddos_fin700_36c9bac4-8e03-4732-8802-a5b4ea0eb483"/>
+    <field name="name">x_studio_stage_id</field>
+    <field name="on_delete">restrict</field>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation">x_oddos_fin700_stage</field>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="True"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking">1</field>
+    <field name="translate" eval="False"/>
+    <field name="ttype">many2one</field>
+  </record>
+  <record id="studio_customization.tags_oddos_fin700_fba9b691-807e-4982-8197-7f721de49291" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Tags</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_oddos_fin700</field>
+    <field name="model_id" ref="studio_customization.oddos_fin700_36c9bac4-8e03-4732-8802-a5b4ea0eb483"/>
+    <field name="name">x_studio_tag_ids</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation">x_oddos_fin700_tag</field>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table">x_oddos_fin700_tag_rel</field>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking" eval="False"/>
+    <field name="translate" eval="False"/>
+    <field name="ttype">many2many</field>
+  </record>
+  <record id="studio_customization.value_oddos_fin700_b2ec4ac7-cab9-458c-9514-865b988cef05" model="ir.model.fields" context="{'studio': True}">
+    <field name="complete_name" eval="False"/>
+    <field name="compute" eval="False"/>
+    <field name="copied" eval="True"/>
+    <field name="depends" eval="False"/>
+    <field name="domain">[]</field>
+    <field name="field_description">Value</field>
+    <field name="groups" eval="[(6, 0, [])]"/>
+    <field name="help" eval="False"/>
+    <field name="index" eval="False"/>
+    <field name="model">x_oddos_fin700</field>
+    <field name="model_id" ref="studio_customization.oddos_fin700_36c9bac4-8e03-4732-8802-a5b4ea0eb483"/>
+    <field name="name">x_studio_value</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="False"/>
+    <field name="related" eval="False"/>
+    <field name="relation" eval="False"/>
+    <field name="relation_field" eval="False"/>
+    <field name="relation_table" eval="False"/>
+    <field name="required" eval="False"/>
+    <field name="selectable" eval="True"/>
+    <field name="selection" eval="False"/>
+    <field name="size" eval="False"/>
+    <field name="state">manual</field>
+    <field name="store" eval="True"/>
+    <field name="tracking">1</field>
+    <field name="translate" eval="False"/>
+    <field name="ttype">float</field>
+  </record>
+</odoo>

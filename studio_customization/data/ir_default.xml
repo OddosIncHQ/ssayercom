@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="studio_customization.active_entity_4661f092-09ef-474d-a255-b7ee0e628050" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="studio_customization.active_entity_4b4014cd-e210-4a13-a31e-58b73b0b738e"/>
+    <field name="condition" eval="False"/>
+    <field name="json_value">true</field>
+  </record>
+  <record id="studio_customization.active_oddos_fin700_865d9ba2-5b01-4454-8868-f7678a8df15a" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="studio_customization.active_oddos_fin700_f872e066-5022-4d0a-9440-d0243cd82606"/>
+    <field name="condition" eval="False"/>
+    <field name="json_value">true</field>
+  </record>
+  <record id="studio_customization.company_oddos_fin700_1fc321b1-61cb-4995-b440-8abafd2b2a50" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="studio_customization.company_oddos_fin700_9f757594-8d1e-499a-8911-4915e4ae49b0"/>
+    <field name="condition" eval="False"/>
+    <field name="json_value">2</field>
+  </record>
+  <record id="studio_customization.company_oddos_fin700_4c416c98-60b3-4179-82b3-727c1ea215c4" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="studio_customization.company_oddos_fin700_9f757594-8d1e-499a-8911-4915e4ae49b0"/>
+    <field name="condition" eval="False"/>
+    <field name="json_value">8</field>
+  </record>
+  <record id="studio_customization.company_oddos_fin700_4f4089a9-0b72-4226-a27d-48785a0d774e" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="studio_customization.company_oddos_fin700_9f757594-8d1e-499a-8911-4915e4ae49b0"/>
+    <field name="condition" eval="False"/>
+    <field name="json_value">5</field>
+  </record>
+  <record id="studio_customization.company_oddos_fin700_8c30ae86-dce6-4a0e-aabe-0dfcebafb296" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="studio_customization.company_oddos_fin700_9f757594-8d1e-499a-8911-4915e4ae49b0"/>
+    <field name="condition" eval="False"/>
+    <field name="json_value">1</field>
+  </record>
+  <record id="studio_customization.company_oddos_fin700_a6a3d484-953c-405f-8fd4-cc48d09d90a7" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="studio_customization.company_oddos_fin700_9f757594-8d1e-499a-8911-4915e4ae49b0"/>
+    <field name="condition" eval="False"/>
+    <field name="json_value">11</field>
+  </record>
+  <record id="studio_customization.company_oddos_fin700_bda3077a-28be-4311-aec9-763c346bd64a" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="studio_customization.company_oddos_fin700_9f757594-8d1e-499a-8911-4915e4ae49b0"/>
+    <field name="condition" eval="False"/>
+    <field name="json_value">4</field>
+  </record>
+  <record id="studio_customization.company_oddos_fin700_bde0a048-9090-4c65-adae-21a1f9fae709" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="studio_customization.company_oddos_fin700_9f757594-8d1e-499a-8911-4915e4ae49b0"/>
+    <field name="condition" eval="False"/>
+    <field name="json_value">3</field>
+  </record>
+  <record id="studio_customization.currency_oddos_fin70_11046f4c-0a1b-41f6-b4ce-517087ef6ca7" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="studio_customization.currency_oddos_fin70_235db7e2-64e2-4822-b6e4-6976ef642d95"/>
+    <field name="condition" eval="False"/>
+    <field name="json_value">1</field>
+  </record>
+  <record id="studio_customization.currency_oddos_fin70_1f623f71-1ccf-46ed-ad7a-a6bca5230722" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="studio_customization.currency_oddos_fin70_235db7e2-64e2-4822-b6e4-6976ef642d95"/>
+    <field name="condition" eval="False"/>
+    <field name="json_value">45</field>
+  </record>
+  <record id="studio_customization.currency_oddos_fin70_8685555b-76b1-41e7-8c33-198f648e4908" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="studio_customization.currency_oddos_fin70_235db7e2-64e2-4822-b6e4-6976ef642d95"/>
+    <field name="condition" eval="False"/>
+    <field name="json_value">1</field>
+  </record>
+  <record id="studio_customization.currency_oddos_fin70_b177759f-e571-4856-9e16-ec5c6f0f2797" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="studio_customization.currency_oddos_fin70_235db7e2-64e2-4822-b6e4-6976ef642d95"/>
+    <field name="condition" eval="False"/>
+    <field name="json_value">142</field>
+  </record>
+  <record id="studio_customization.currency_oddos_fin70_b915117a-680d-4bfb-816f-8e3b82a3d25d" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="studio_customization.currency_oddos_fin70_235db7e2-64e2-4822-b6e4-6976ef642d95"/>
+    <field name="condition" eval="False"/>
+    <field name="json_value">2</field>
+  </record>
+  <record id="studio_customization.currency_oddos_fin70_e3f888c7-9adf-428d-9759-832f2c306d69" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="studio_customization.currency_oddos_fin70_235db7e2-64e2-4822-b6e4-6976ef642d95"/>
+    <field name="condition" eval="False"/>
+    <field name="json_value">45</field>
+  </record>
+  <record id="studio_customization.currency_oddos_fin70_eed04f9b-47e2-4ab5-984e-ae7c50bb96e5" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="studio_customization.currency_oddos_fin70_235db7e2-64e2-4822-b6e4-6976ef642d95"/>
+    <field name="condition" eval="False"/>
+    <field name="json_value">142</field>
+  </record>
+  <record id="studio_customization.entity_details_entit_3ae53763-b952-4f01-972f-01d46179fb5a" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="studio_customization.description_entity_289fddef-ceea-4f9f-ba0c-dce2d237d9f4"/>
+    <field name="condition" eval="False"/>
+    <field name="json_value">"Entity Details"</field>
+  </record>
+  <record id="studio_customization.new_integer_res_comp_5735cef5-c459-4be1-8cb2-f34ee047747a" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="studio_customization.new_integer_res_comp_e94919cf-9541-4e55-a2d2-7e50259cf62b"/>
+    <field name="condition" eval="False"/>
+    <field name="json_value">"0"</field>
+  </record>
+  <record id="studio_customization.sequence_entity_ca6ddc42-4531-4abb-a39d-82ef283eb50a" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="studio_customization.sequence_entity_edc194b8-67aa-4f40-8fb6-1d1170d0ac0b"/>
+    <field name="condition" eval="False"/>
+    <field name="json_value">10</field>
+  </record>
+  <record id="studio_customization.sequence_oddos_fin70_d080d932-49f2-445f-b340-103ac7eab799" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="studio_customization.sequence_oddos_fin70_43790e47-8906-41cb-bc3e-6081aa78a620"/>
+    <field name="condition" eval="False"/>
+    <field name="json_value">10</field>
+  </record>
+  <record id="studio_customization.stage_oddos_fin700_280d9323-9c37-4231-8e03-7bb329cc1c58" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="studio_customization.stage_oddos_fin700_2a735105-4d2d-4791-a2bc-76d3368e9cfb"/>
+    <field name="condition" eval="False"/>
+    <field name="json_value">1</field>
+  </record>
+</odoo>
