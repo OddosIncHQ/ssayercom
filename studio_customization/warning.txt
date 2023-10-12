@@ -1,0 +1,14 @@
+The following relational data haven't been exported because they either refer
+to a model that Studio doesn't export, or have no XML id:
+
+Record: base.group_multi_company
+Model: res.groups
+Field: category_id
+Type: many2one
+Value: ir.module.category(116,) ('Extra Rights')
+
+Record: base.group_multi_company
+Model: res.groups
+Field: users
+Type: many2many
+Value: res.users(2,) ('Administrator')
