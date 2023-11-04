@@ -1,0 +1,16 @@
+<odoo>
+  <data>
+    <record id="account_journal_form_fintoc_linktoken" model="ir.ui.view">
+      <field name="name">account.journal.form.fintoc.linktoken</field>
+      <field name="model">account.journal</field>
+      <field name="inherit_id" ref="account.view_account_journal_form"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='account_control_ids']" position="after">
+          <field name="fintoc_link_token" password="True"/>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</odoo>
