@@ -7,6 +7,9 @@
                 <field name="partner_id"/>
                 <field name="tipo_contribuyente"/>
                 <field name="tipo"/>
+                <field name="giro_informado"/>
+                <field name="codigo_actividad_informado"/>
+                <field name="oficina_tramites"/>
             </tree>
         </field>
     </record>
