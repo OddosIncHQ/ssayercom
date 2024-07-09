@@ -9,6 +9,7 @@
         'security/sii_data_security.xml',
         'security/ir.model.access.csv',
         'views/sii_data_views.xml',
+        'views/mail_activity_views.xml',
     ],
     'installable': True,
     'application': True,
