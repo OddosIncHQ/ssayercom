@@ -7,11 +7,12 @@
         Este módulo permite importar datos de archivos CSV del SII y 
         relacionarlos con el módulo de contactos (res.partner).
     """,
-    'author': 'Tu Nombre',
+    'author': 'Oddos Solutions LLC',
     'depends': ['base', 'contacts'],
     'data': [
         'views/sii_data_views.xml',
     ],
+    'license': 'LGPL-3',
     'installable': True,
     'application': True,
 }
