@@ -1,16 +1,13 @@
 {
-    'name': 'SII Data Module',
+    'name': 'SII Data',
     'version': '1.0',
-    'category': 'Custom',
-    'summary': 'Module for SII Data',
-    'description': 'Handles SII Data',
     'depends': ['base', 'mail'],
     'data': [
-        'security/sii_data_security.xml',
         'security/ir.model.access.csv',
+        'security/sii_data_security.xml',  # Ensure this is the correct path
         'views/sii_data_views.xml',
     ],
+    'demo': [],
     'installable': True,
-    'application': True,
-    'auto_install': False,
 }
+
