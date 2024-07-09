@@ -6,7 +6,6 @@
             <tree string="SII Data">
                 <field name="name"/>
                 <field name="activity_type_id"/>
-                <field name="activity_date_deadline"/>
                 <field name="activity_user_id"/>
             </tree>
         </field>
@@ -26,8 +25,8 @@
                         <field name="activity_ids">
                             <tree>
                                 <field name="activity_type_id"/>
-                                <field name="activity_date_deadline"/>
                                 <field name="activity_user_id"/>
+                                <field name="date_deadline"/>
                                 <field name="activity_summary"/>
                             </tree>
                         </field>
