@@ -1,18 +1,16 @@
 {
-    'name': 'SII Data Import',
+    'name': 'SII Data Module',
     'version': '1.0',
     'category': 'Custom',
-    'summary': 'Importar datos del SII y relacionarlos con contactos',
-    'description': """
-        Este módulo permite importar datos de archivos CSV del SII y 
-        relacionarlos con el módulo de contactos (res.partner).
-    """,
-    'author': 'Oddos Solutions LLC',
-    'depends': ['base', 'contacts'],
+    'summary': 'Module for SII Data',
+    'description': 'Handles SII Data',
+    'depends': ['base'],
     'data': [
         'views/sii_data_views.xml',
+        'security/ir.model.access.csv',
+        # Add other data files here
     ],
-    'license': 'LGPL-3',
     'installable': True,
     'application': True,
+    'auto_install': False,
 }
