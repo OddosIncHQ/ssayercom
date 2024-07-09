@@ -1,8 +1,5 @@
 import csv
-import logging
 from odoo import models, fields, api
-
-_logger = logging.getLogger(__name__)
 
 class SiiData(models.Model):
     _name = 'sii.data'
@@ -25,7 +22,7 @@ class SiiData(models.Model):
                 if not data:
                     _logger.error("CSV file is empty.")
                     return
-                
+
                 partner = None
                 for i, line in enumerate(data):
                     if i == 0:  # Assuming the first line contains VAT
