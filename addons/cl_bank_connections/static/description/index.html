@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<section class="oe_container text-align: center;">
+  <h2 class="oe_slogan" style="color:#875A7B">CONEXIONES BANCARIAS AUTOMATICAS PARA CHILE Y MEXICO</h2>
+  <div class="oe_row oe_spaced">
+    <h3 class="oe_slogan">CONECTA TUS BANCOS CON ODOO PARA REGISTRAR LOS EXTRACTOS BANCARIOS AUTOMATICAMENTE</h3>
+  </div>
+  <div class="section" id="configuration">
+    <h4><a class="toc-backref" href="#id4">Configuraciones</a></h4>
+    <p>Este modulo usa el servicio de "https://fintoc.com" para conectar las cuentas bancarias con Odoo y obtener y crear la informacion de los extractos bancarios en Odoo automaticamente.
+    Debe crear una cuenta en "https://dashboard.fintoc.com/signup"  y registrar los bancos que se van a conectar con Odoo. Para mas informacion sobre la creacion de la cuenta en Fintoc, consulte la documentacion oficial de "https://docs.fintoc.com/docs/quickstart" </p>
+    <p>En Odoo, se debe crear los diarios de banco y en la pestana "Asientos contables" en la configuracion del diario, se debe crear el numbero de cuenta bancaria.</p>
+    <p><strong>Configuracion de los bancos en Fintoc:</strong></p>
+    <ol class="arabic simple">
+      <li>Una vez creada la cuenta en Fintoc, ir a <em>Dashboard / Links </em> y seleccionar el boton <em>"Conectar"</em>.
+      </li>
+        <img src="fintoc_links.png" alt="Screenshot Fintoc Links" style="max-width: 100%;margin: 20px auto;border: 1px solid #ddd;">
+      <li>En la ventana emergente, seleccionar el pais, en la opcion <em>"API"</em> seleccionar "Banking" , en el <em>"Tipo De Cuenta"</em> seleccionar "Individual" o "Empresas" y luego seleccionar el boton <em>"Conectar via Link"</em>.
+      </li>
+        <img src="fintoc_create_link.png" alt="Screenshot Fintoc Create Links" style="max-width: 100%;margin: 20px auto;border: 1px solid #ddd;">
+      <li>En la siguiente ventana, seleccionar <em>"Continuar"</em>.
+      </li>
+        <img src="fintoc_create_link1.png" alt="Screenshot Fintoc Links" style="max-width: 100%;margin: 20px auto;border: 1px solid #ddd;">
+      <li>En la siguiente ventana, seleccionar el banco haciendo click sobre el icono del mismo.
+      </li>
+        <img src="fintoc_select_bank.png" alt="Screenshot Fintoc Select Links" style="max-width: 100%;margin: 20px auto;border: 1px solid #ddd;">
+      <li>Ingresar las credenciales del banco, esto proceso tomara alrededor de 30 segundos. Una vez se muestra el mensaje <em>"Conexion exitosa"</em>, seleccionar el boton <em>"Listo"</em>.
+      </li>
+        <img src="fintoc_create_link2.png" alt="Screenshot Fintoc Create Link 2" style="max-width: 100%;margin: 20px auto;border: 1px solid #ddd;">
+      <li>Se mostrara un mensaje de que el Link se creo exitosamente. Este Link se debera copiar y guardar en un lugar seguro.
+      </li>
+        <img src="fintoc_create_link3.png" alt="Screenshot Fintoc Create Link 3" style="max-width: 100%;margin: 20px auto;border: 1px solid #ddd;">
+    </ol>
+    <p><strong>Configuracion de la API Key en Odoo:</strong></p>
+    <ol class="arabic simple">
+      <li>En Fintoc, ir a <em>"API KEYS"</em> y copiar la <em>"Secret Key"</em>
+      </li>
+        <img src="fintoc_api_secret_key.png" alt="Screenshot journal configuration" style="max-width: 100%;margin: 20px auto;border: 1px solid #ddd;">
+      <li>En Odoo, ir a <em>Ajustes / Usuarios</em> y seleccionar cualquier usuario (preferentemente el usuario administrador). En la ficha del usuario, ir la pestana <em>"Configuracion avanzada"</em>
+        e ingresar la <em>"Secret Key"</em> en el campo <em>"Fintoc Api Key"</em>
+      </li>
+        <img src="fintoc_api_key.png" alt="Screenshot journal configuration" style="max-width: 100%;margin: 20px auto;border: 1px solid #ddd;">
+    </ol>
+    <p><strong>Configuracion de los diarios bancarios en Odoo:</strong></p>
+    <ol class="arabic simple">
+      <li>Ir a <em>Facturando o Contabilidad / Configuracion / Diarios contables</em> y en la pestana <em>Asientos Contables</em> crear el numero de cuenta bancaria.
+      </li>
+        <img src="journal_configuration.png" alt="Screenshot journal configuration" style="max-width: 100%;margin: 20px auto;border: 1px solid #ddd;">
+      <li>Luego, en la pestana <em>"Configuracion avanzada"</em> ingresar el Link en el campo <em>"Fintoc Link Token"</em> obtenido en el paso 6 durante la creacion del banco en Fintoc.
+      </li>
+        <img src="fintoc_configure_journal.png" alt="Screenshot journal configuration 2" style="max-width: 100%;margin: 20px auto;border: 1px solid #ddd;">
+      <li>Una vez configurados los diarios bancarios, Odoo se encargara de conectarse a las cuentas bancarias y crear los extractos bancarios en cada diario. Por defecto, el modulo ejecuta el proceso una vez al dia.
+        Si desea modificar esta frecuencia debe ir a <em>Ajustes / Activar modo desarrollador</em> . Luego, volver a <em>Ajustes / Tecnico / Accciones Planificadas / Fintoc Listar Movimientos </em> . Editar la frecuencia
+        en <em>"Ejecutar cada"</em> y <em>"Siguiente fecha ejecucion"</em> para modificar la hora de ejecucion.
+      </li>
+      <img src="fintoc_cron.png" alt="Screenshot Fintoc Cron" style="max-width: 100%;margin: 20px auto;border: 1px solid #ddd;">
+    </ol>
+</section>
+</html>
+
+
+
+
+
