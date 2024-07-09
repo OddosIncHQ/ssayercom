@@ -1,55 +1,54 @@
-import csv
 from odoo import models, fields, api
 
 class SiiData(models.Model):
     _name = 'sii.data'
-    _description = 'Datos extraídos del SII'
+    _description = 'SII Data'
 
-    partner_id = fields.Many2one('res.partner', string='Contacto', ondelete='cascade')
-    tipo_contribuyente = fields.Char(string='Tipo de Contribuyente')
-    tipo = fields.Char(string='Tipo')
-    giro_informado = fields.Char(string='Giro Informado')
-    codigo_actividad_informado = fields.Char(string='Código de Actividad Informado')
-    oficina_tramites = fields.Char(string='Oficina para Trámites Presenciales')
+    name = fields.Char(string='Name', required=True)
+    activity_ids = fields.One2many('mail.activity', 'res_id', string='Activities', domain=[('res_model', '=', 'sii.data')])
+    activity_state = fields.Selection([
+        ('today', 'Today'),
+        ('planned', 'Planned'),
+        ('overdue', 'Overdue')
+    ], string='Activity State')
+    activity_type_id = fields.Many2one('mail.activity.type', string='Activity Type')
+    activity_date_deadline = fields.Date(string='Deadline')
+    activity_summary = fields.Char(string='Summary')
+    activity_user_id = fields.Many2one('res.users', string='Responsible User')
+    activity_calendar_event_id = fields.Many2one('calendar.event', string='Calendar Event')
+    message_follower_ids = fields.Many2many('res.partner', string='Followers')
+    message_partner_ids = fields.Many2many('res.partner', string='Partners')
+    message_ids = fields.One2many('mail.message', 'res_id', string='Messages', domain=[('model', '=', 'sii.data')])
+    rating_ids = fields.One2many('rating.rating', 'res_id', string='Ratings', domain=[('res_model', '=', 'sii.data')])
+    website_message_ids = fields.One2many('mail.message', 'res_id', string='Website Messages', domain=[('model', '=', 'sii.data')])
+    x_active = fields.Boolean(string='Active', default=True)
+    x_studio_partner_id = fields.Many2one('res.partner', string='Partner')
+    x_name = fields.Char(string='Custom Name')
+    x_color = fields.Integer(string='Color')
+    x_studio_company_id = fields.Many2one('res.company', string='Company')
+    x_studio_notes = fields.Text(string='Notes')
+    x_studio_date = fields.Date(string='Date')
+    x_studio_value = fields.Float(string='Value')
+    x_studio_stage_id = fields.Many2one('crm.stage', string='Stage')
+    x_studio_kanban_state = fields.Selection([
+        ('normal', 'In Progress'),
+        ('done', 'Ready'),
+        ('blocked', 'Blocked')
+    ], string='Kanban State')
+    x_studio_currency_id = fields.Many2one('res.currency', string='Currency')
+    x_studio_sequence = fields.Integer(string='Sequence')
+    x_studio_priority = fields.Selection([
+        ('0', 'Normal'),
+        ('1', 'High')
+    ], string='Priority')
+    x_studio_tag_ids = fields.Many2many('crm.tag', string='Tags')
+    x_studio_partner_phone = fields.Char(string='Partner Phone')
+    x_studio_partner_email = fields.Char(string='Partner Email')
+    x_studio_mojo_file = fields.Binary(string='Mojo File')
+    x_studio_mojo_file_filename = fields.Char(string='File Name')
 
-    @api.model
-    def import_csv(self, file_path):
-        try:
-            with open(file_path, 'r', encoding='utf-8') as file:
-                reader = csv.reader(file)
-                data = list(reader)
-
-                if not data:
-                    _logger.error("CSV file is empty.")
-                    return
-
-                partner = None
-                for i, line in enumerate(data):
-                    if i == 0:  # Assuming the first line contains VAT
-                        vat = line[1].strip()
-                        partner = self.env['res.partner'].search([('vat', '=', vat)], limit=1)
-                        if not partner:
-                            partner = self.env['res.partner'].create({'name': 'Unknown', 'vat': vat})
-                    elif i > 0 and line[0].strip().lower() != 'formularios presentados':
-                        # Validate line length to avoid index errors
-                        if len(line) < 10:
-                            _logger.error("Invalid data line at index %s: %s", i, line)
-                            continue
-
-                        # Create SII data record
-                        self.create({
-                            'partner_id': partner.id,
-                            'tipo_contribuyente': line[1].strip(),
-                            'tipo': line[3].strip(),
-                            'giro_informado': line[5].strip(),
-                            'codigo_actividad_informado': line[7].strip(),
-                            'oficina_tramites': line[9].strip(),
-                        })
-            _logger.info("CSV import completed successfully.")
-        except Exception as e:
-            _logger.error("Error importing CSV file: %s", e)
-
-class ResPartner(models.Model):
-    _inherit = 'res.partner'
-
-    sii_data_ids = fields.One2many('sii.data', 'partner_id', string='Datos del SII')
+    @api.onchange('x_studio_partner_id')
+    def _onchange_partner_id(self):
+        if self.x_studio_partner_id:
+            self.x_studio_partner_phone = self.x_studio_partner_id.phone
+            self.x_studio_partner_email = self.x_studio_partner_id.email
