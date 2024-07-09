@@ -6,9 +6,9 @@
     'description': 'Handles SII Data',
     'depends': ['base'],
     'data': [
-        'views/sii_data_views.xml',
+        'security/sii_data_security.xml',
         'security/ir.model.access.csv',
-        # Add other data files here
+        'views/sii_data_views.xml',
     ],
     'installable': True,
     'application': True,
