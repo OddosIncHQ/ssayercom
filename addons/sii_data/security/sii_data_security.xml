@@ -1,16 +1,58 @@
 <odoo>
-    <data noupdate="1">
-        <!-- Group: SII Data User -->
-        <record id="group_sii_data_user" model="res.groups">
-            <field name="name">SII Data User</field>
-            <field name="category_id" ref="base.module_category_hidden"/>
-        </record>
+    <!-- Tree View Definition -->
+    <record id="view_sii_data_tree" model="ir.ui.view">
+        <field name="name">sii.data.tree</field>
+        <field name="model">sii.data</field>
+        <field name="arch" type="xml">
+            <tree string="SII Data">
+                <field name="name"/>
+                <field name="activity_type_id"/>
+                <field name="activity_date_deadline"/>
+                <field name="activity_user_id"/>
+            </tree>
+        </field>
+    </record>
 
-        <!-- Group: SII Data Manager -->
-        <record id="group_sii_data_manager" model="res.groups">
-            <field name="name">SII Data Manager</field>
-            <field name="implied_ids" eval="[(4, ref('group_sii_data_user'))]"/>
-            <field name="category_id" ref="base.module_category_hidden"/>
-        </record>
-    </data>
+    <!-- Form View Definition -->
+    <record id="view_sii_data_form" model="ir.ui.view">
+        <field name="name">sii.data.form</field>
+        <field name="model">sii.data</field>
+        <field name="arch" type="xml">
+            <form string="SII Data">
+                <header>
+                    <button name="action_upload_file" type="object" string="Upload File" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="activity_ids">
+                            <tree>
+                                <field name="activity_type_id"/>
+                                <field name="activity_date_deadline"/>
+                                <field name="activity_user_id"/>
+                                <field name="activity_summary"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group>
+                        <field name="message_follower_ids"/>
+                        <field name="message_partner_ids"/>
+                        <field name="message_ids"/>
+                    </group>
+                    <group>
+                        <field name="rating_ids"/>
+                        <field name="website_message_ids"/>
+                    </group>
+                    <group>
+                        <field name="x_studio_partner_id"/>
+                        <field name="x_studio_partner_phone"/>
+                        <field name="x_studio_partner_email"/>
+                    </group>
+                    <group>
+                        <field name="upload_file" widget="binary" filename="upload_file_filename"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 </odoo>
