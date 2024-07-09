@@ -39,7 +39,8 @@
                     <group>
                         <field name="name"/>
                         <field name="vat"/>
-                        <field name="activity_date_deadline"/>
+                        <!-- Eliminar o reemplazar este campo -->
+                        <!-- <field name="activity_date_deadline"/> -->
                     </group>
                     <group>
                         <field name="message_follower_ids"/>
