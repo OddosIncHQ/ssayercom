@@ -33,4 +33,10 @@
 
     <record id="sii_data_action" model="ir.actions.act_window">
         <field name="name">SII Data</field>
-        <field name="res_
+        <field name="res_model">sii.data</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_sii_data" name="SII Data" parent="contacts.menu_contacts" action="sii_data_action"/>
+</odoo>
+
