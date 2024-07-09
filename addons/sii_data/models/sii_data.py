@@ -1,4 +1,7 @@
 from odoo import models, fields, api
+import base64
+import csv
+from io import StringIO
 
 class SiiData(models.Model):
     _name = 'sii.data'
@@ -47,8 +50,38 @@ class SiiData(models.Model):
     x_studio_mojo_file = fields.Binary(string='Mojo File')
     x_studio_mojo_file_filename = fields.Char(string='File Name')
 
+    upload_file = fields.Binary(string='Upload File')
+    upload_file_filename = fields.Char(string='Upload File Name')
+
     @api.onchange('x_studio_partner_id')
     def _onchange_partner_id(self):
         if self.x_studio_partner_id:
             self.x_studio_partner_phone = self.x_studio_partner_id.phone
             self.x_studio_partner_email = self.x_studio_partner_id.email
+
+    @api.model
+    def process_uploaded_file(self, file_content):
+        # Implement the logic to process the uploaded file
+        decoded_file = base64.b64decode(file_content)
+        file_str = decoded_file.decode("utf-8")
+        data = StringIO(file_str)
+        csv_reader = csv.reader(data, delimiter=',')
+
+        for row in csv_reader:
+            # Example processing: assuming CSV with columns 'name' and 'value'
+            name, value = row
+            # Perform the desired actions with the row data
+            # Example: create or update records based on the CSV data
+            self.create({
+                'name': name,
+                # other fields to fill
+            })
+
+    def action_upload_file(self):
+        self.ensure_one()
+        if self.upload_file:
+            self.process_uploaded_file(self.upload_file)
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'reload',
+            }
