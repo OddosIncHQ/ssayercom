@@ -5,8 +5,8 @@
     'summary': 'Add custom fields to contacts',
     'depends': ['base', 'contacts'],
     'data': [
-    'views/res_partner_views.xml',
-    'views/contact_csv_import_views.xml',
-    'data/ir_cron_data.xml',
-],
-
+        'views/res_partner_views.xml',
+        'views/contact_csv_import_views.xml',
+        'data/ir_cron_data.xml',
+    ],
+}
