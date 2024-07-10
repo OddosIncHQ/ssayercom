@@ -1,69 +1,19 @@
-<odoo>
-    <!-- Tree View Definition -->
-    <record id="view_sii_data_tree" model="ir.ui.view">
-        <field name="name">sii.data.tree</field>
-        <field name="model">sii.data</field>
-        <field name="arch" type="xml">
-            <tree string="SII Data">
-                <field name="name"/>
-                <field name="activity_type_id"/>
-                <field name="activity_date_deadline"/>
-                <field name="activity_user_id"/>
-            </tree>
-        </field>
-    </record>
+from odoo import models, fields
 
-    <!-- Form View Definition -->
-    <record id="view_sii_data_form" model="ir.ui.view">
-        <field name="name">sii.data.form</field>
-        <field name="model">sii.data</field>
-        <field name="arch" type="xml">
-            <form string="SII Data">
-                <header>
-                    <button name="action_upload_file" type="object" string="Upload File" class="oe_highlight"/>
-                </header>
-                <sheet>
-                    <group>
-                        <field name="name"/>
-                        <field name="activity_ids">
-                            <tree>
-                                <field name="activity_type_id"/>
-                                <field name="activity_date_deadline"/>
-                                <field name="activity_user_id"/>
-                                <field name="activity_summary"/>
-                            </tree>
-                        </field>
-                    </group>
-                    <group>
-                        <field name="message_follower_ids"/>
-                        <field name="message_partner_ids"/>
-                        <field name="message_ids"/>
-                    </group>
-                    <group>
-                        <field name="rating_ids"/>
-                        <field name="website_message_ids"/>
-                    </group>
-                    <group>
-                        <field name="x_studio_partner_id"/>
-                        <field name="x_studio_partner_phone"/>
-                        <field name="x_studio_partner_email"/>
-                    </group>
-                    <group>
-                        <field name="upload_file" widget="binary" filename="upload_file_filename"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
+class SiiData(models.Model):
+    _name = 'sii.data'
+    _description = 'SII Data'
 
-    <!-- Access Rights Definition -->
-    <record id="model_sii_data_access" model="ir.model.access">
-        <field name="name">sii.data access</field>
-        <field name="model_id" ref="model_sii_data"/>
-        <field name="group_id" ref="base.group_user"/>
-        <field name="perm_read" eval="1"/>
-        <field name="perm_write" eval="1"/>
-        <field name="perm_create" eval="1"/>
-        <field name="perm_unlink" eval="1"/>
-    </record>
-</odoo>
+    name = fields.Char(string='Name', required=True)
+    vat_cl = fields.Char(string='RUT')
+    sii_pass = fields.Char(string='SII Pass')
+    email = fields.Char(string='Email')
+    phone = fields.Char(string='Phone')
+    company_id = fields.Many2one('res.company', string='Company')
+    # Agrega otros campos según tus necesidades
+    address = fields.Char(string='Address')
+    city = fields.Char(string='City')
+    state_id = fields.Many2one('res.country.state', string='State')
+    country_id = fields.Many2one('res.country', string='Country')
+    zip = fields.Char(string='ZIP')
+    active = fields.Boolean(string='Active', default=True)
