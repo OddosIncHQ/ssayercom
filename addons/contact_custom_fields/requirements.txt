@@ -1,1 +1,1 @@
-
+requests==2.26.0  # Asegúrate de usar una versión compatible
