@@ -14,4 +14,5 @@
     'application': True,
     'auto_install': False,
     'license': 'LGPL-3', 
+    'icon': '/static/mojologo.png', 
 }
