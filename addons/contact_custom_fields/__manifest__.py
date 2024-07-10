@@ -1,4 +1,3 @@
-
 {
     'name': 'Contact Custom Fields',
     'version': '1.0',
