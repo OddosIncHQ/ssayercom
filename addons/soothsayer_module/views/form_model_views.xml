@@ -1,0 +1,29 @@
+<odoo>
+    <record id="view_form_tree" model="ir.ui.view">
+        <field name="name">soothsayer.form.tree</field>
+        <field name="model">soothsayer.form</field>
+        <field name="arch" type="xml">
+            <tree string="Forms">
+                <field name="name"/>
+                <field name="year"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_form_form" model="ir.ui.view">
+        <field name="name">soothsayer.form.form</field>
+        <field name="model">soothsayer.form</field>
+        <field name="arch" type="xml">
+            <form string="Form">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="year"/>
+                        <field name="status"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
