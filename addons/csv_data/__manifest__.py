@@ -9,6 +9,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/csv_data_views.xml',
+        'models/csv_data_model.xml',  # Ensure this line is present
     ],
     'installable': True,
     'application': True,
