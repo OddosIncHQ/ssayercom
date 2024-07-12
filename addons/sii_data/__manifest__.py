@@ -2,17 +2,15 @@
     'name': 'SII Data Module',
     'version': '1.0',
     'category': 'Custom',
-    'summary': 'Module for SII Data',
-    'description': 'Handles SII Data',
-    'depends': ['base', 'mail'],
+    'summary': 'Module for managing SII data',
+    'description': 'Handles custom functionalities for SII data',
+    'depends': ['base', 'mail_activity'],  # Asegúrate de incluir 'mail' o 'mail_activity' como dependencia
     'data': [
         'security/sii_data_security.xml',
-        'security/ir.model.access.csv',
         'views/sii_data_views.xml',
-        'views/mail_activity_views.xml',
     ],
     'installable': True,
-    'application': True,
     'auto_install': False,
+    'application': True,
     'license': 'LGPL-3',
 }
