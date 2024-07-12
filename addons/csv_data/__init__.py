@@ -1,3 +1,1 @@
-# models/__init__.py
-
-from . import csv_data
+from . import models
