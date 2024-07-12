@@ -1,0 +1,29 @@
+<odoo>
+    <record id="view_csv_import_wizard" model="ir.ui.view">
+        <field name="name">csv.import.wizard.form</field>
+        <field name="model">csv.import.wizard</field>
+        <field name="arch" type="xml">
+            <form string="CSV Import Wizard">
+                <sheet>
+                    <group>
+                        <field name="csv_file"/>
+                    </group>
+                    <footer>
+                        <button string="Import" type="object" name="import_csv" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_csv_import_wizard" model="ir.actions.act_window">
+        <field name="name">CSV Import Wizard</field>
+        <field name="res_model">csv.import.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_csv_import_wizard" name="Import CSV" parent="main_menu" action="action_csv_import_wizard"/>
+</odoo>
