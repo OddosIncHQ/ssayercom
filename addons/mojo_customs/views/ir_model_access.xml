@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="access_mojo_custom_user" model="ir.model.access">
+        <field name="name">mojo.custom user</field>
+        <field name="model_id" ref="model_mojo_custom"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+    <!-- Add other access controls as needed -->
+</odoo>
