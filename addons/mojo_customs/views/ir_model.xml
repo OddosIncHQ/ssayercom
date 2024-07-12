@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="model_mojo_custom" model="ir.model">
+        <field name="name">mojo.custom</field>
+        <field name="model">mojo.custom</field>
+        <field name="state">manual</field>
+    </record>
+    <!-- Add other models as needed -->
+</odoo>
