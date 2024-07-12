@@ -25,8 +25,8 @@ class SiiData(models.Model):
     activity_ids = fields.One2many('mail.activity', 'res_id', string='Activities', domain=[('res_model', '=', 'sii.data')])
     
     # Campos relacionados con los mensajes y seguidores
-    message_follower_ids = fields.Many2many('res.partner', string='Followers')
-    message_partner_ids = fields.Many2many('res.partner', string='Partners')
+    message_follower_ids = fields.Many2many('res.partner', 'sii_data_follower_rel', 'sii_data_id', 'partner_id', string='Followers')
+    message_partner_ids = fields.Many2many('res.partner', 'sii_data_partner_rel', 'sii_data_id', 'partner_id', string='Partners')
     message_ids = fields.One2many('mail.message', 'res_id', string='Messages', domain=[('model', '=', 'sii.data')])
     rating_ids = fields.One2many('rating.rating', 'res_id', string='Ratings', domain=[('res_model', '=', 'sii.data')])
     website_message_ids = fields.One2many('mail.message', 'res_id', string='Website Messages', domain=[('model', '=', 'sii.data')])
