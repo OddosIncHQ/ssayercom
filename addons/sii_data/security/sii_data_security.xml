@@ -1,14 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <!-- Tree View Definition -->
     <record id="view_sii_data_tree" model="ir.ui.view">
         <field name="name">sii.data.tree</field>
         <field name="model">sii.data</field>
         <field name="arch" type="xml">
             <tree string="SII Data">
                 <field name="name"/>
-                <field name="activity_type_id"/>
-                <field name="activity_date_deadline"/>
-                <field name="activity_user_id"/>
+                <!-- Eliminar los campos problemáticos -->
+                <!-- <field name="activity_type_id"/> -->
+                <!-- <field name="activity_date_deadline"/> -->
+                <!-- <field name="activity_user_id"/> -->
             </tree>
         </field>
     </record>
@@ -25,16 +26,22 @@
                 <sheet>
                     <group>
                         <field name="name"/>
-                        <field name="activity_ids">
+                        <!-- Eliminar los campos problemáticos -->
+                        <!-- <field name="activity_ids">
                             <tree>
                                 <field name="activity_type_id"/>
                                 <field name="activity_date_deadline"/>
                                 <field name="activity_user_id"/>
                                 <field name="activity_summary"/>
                             </tree>
-                        </field>
+                        </field> -->
                     </group>
                     <group>
+                        <field name="message_follower_ids"/>
+                        <field name="message_partner_ids"/>
+                        <field name="message_ids"/>
+                    </group>
+                    <group
                         <field name="message_follower_ids"/>
                         <field name="message_partner_ids"/>
                         <field name="message_ids"/>
