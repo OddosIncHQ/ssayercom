@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+import base64
 
 class CSVData(models.Model):
     _name = 'csv.data'
@@ -14,8 +15,24 @@ class CSVData(models.Model):
     def import_csv_data(self, csv_content):
         import csv
         from io import StringIO
+        
+        delimiters = [',', ';', '\t']
         csv_file = StringIO(csv_content)
-        reader = csv.DictReader(csv_file)
+        
+        for delimiter in delimiters:
+            csv_file.seek(0)  # Reset file position to the beginning
+            reader = csv.reader(csv_file, delimiter=delimiter)
+            try:
+                headers = next(reader)
+                if len(headers) > 1:  # Assuming a valid CSV has more than one column
+                    break
+            except Exception as e:
+                continue
+        else:
+            raise ValueError("Failed to determine the correct delimiter.")
+        
+        csv_file.seek(0)
+        reader = csv.DictReader(csv_file, delimiter=delimiter)
         
         for row in reader:
             data = {}
