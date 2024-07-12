@@ -1,5 +1,3 @@
-# models/csv_data.py
-
 from odoo import models, fields, api
 
 class CSVData(models.Model):
