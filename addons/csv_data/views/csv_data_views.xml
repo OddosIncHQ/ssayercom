@@ -1,0 +1,74 @@
+<!-- views/csv_data_views.xml -->
+
+<odoo>
+    <record id="view_csv_data_form" model="ir.ui.view">
+        <field name="name">csv.data.form</field>
+        <field name="model">csv.data</field>
+        <field name="arch" type="xml">
+            <form string="CSV Data">
+                <group>
+                    <field name="x_mojo_rut"/>
+                    <field name="x_mojo_process_date"/>
+                    <field name="x_mojo_file_code"/>
+                    <!-- Add other fields dynamically -->
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_csv_data_tree" model="ir.ui.view">
+        <field name="name">csv.data.tree</field>
+        <field name="model">csv.data</field>
+        <field name="arch" type="xml">
+            <tree string="CSV Data">
+                <field name="x_mojo_rut"/>
+                <field name="x_mojo_process_date"/>
+                <field name="x_mojo_file_code"/>
+                <!-- Add other fields dynamically -->
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_csv_data_file_form" model="ir.ui.view">
+        <field name="name">csv.data.file.form</field>
+        <field name="model">csv.data.file</field>
+        <field name="arch" type="xml">
+            <form string="CSV Data File">
+                <group>
+                    <field name="x_mojo_file_code"/>
+                    <field name="x_mojo_process_date"/>
+                    <field name="x_mojo_file_content" filename="filename"/>
+                </group>
+                <footer>
+                    <button name="import_file" type="object" string="Import File" class="oe_highlight"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_csv_data_file_tree" model="ir.ui.view">
+        <field name="name">csv.data.file.tree</field>
+        <field name="model">csv.data.file</field>
+        <field name="arch" type="xml">
+            <tree string="CSV Data File">
+                <field name="x_mojo_file_code"/>
+                <field name="x_mojo_process_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="menu_csv_data" name="CSV Data" sequence="10"/>
+    <menuitem id="menu_csv_data_files" name="Files" parent="menu_csv_data" action="action_csv_data_file"/>
+
+    <record id="action_csv_data" model="ir.actions.act_window">
+        <field name="name">CSV Data</field>
+        <field name="res_model">csv.data</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_csv_data_file" model="ir.actions.act_window">
+        <field name="name">CSV Data File</field>
+        <field name="res_model">csv.data.file</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
