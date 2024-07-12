@@ -1,8 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record id="action_mojo_custom" model="ir.actions.act_window">
-        <field name="name">Mojo Custom</field>
-        <field name="res_model">mojo.custom</field>
-        <field name="view_mode">tree,form</field>
+    <record id="view_res_partner_autocomplete_sync_tree" model="ir.ui.view">
+        <field name="name">res.partner.autocomplete.sync.tree</field>
+        <field name="model">res.partner.autocomplete.sync</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <!-- Remove or comment out fields that do not exist -->
+                <!-- <field name="non_existing_field"/> -->
+            </tree>
+        </field>
     </record>
 </odoo>
