@@ -1,0 +1,40 @@
+<odoo>
+    <record id="view_main_tree" model="ir.ui.view">
+        <field name="name">res.partner.tree</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <tree string="Main Records">
+                <field name="name"/>
+                <field name="rut"/>
+                <field name="contribuyente_type"/>
+                <field name="empresa_type"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_main_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <form string="Main Record">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="rut"/>
+                        <field name="contribuyente_type"/>
+                        <field name="empresa_type"/>
+                        <field name="giro_informado"/>
+                        <field name="codigo_actividad_informado"/>
+                        <field name="oficina_tramites"/>
+                    </group>
+                    <group>
+                        <field name="form_ids"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="main_menu" name="SoothSayer" sequence="1"/>
+    <menuitem id="main_submenu" name="Main Records" parent="main_menu" action="action_main"/>
+</odoo>
