@@ -89,3 +89,9 @@ class CSVDataFile(models.Model):
         for record in self:
             csv_content = base64.b64decode(record.x_mojo_file_content).decode('utf-8')
             self.env['csv.data'].import_csv_data(csv_content)
+
+    def view_imported_data(self):
+        for record in self.env['csv.data'].search([('x_mojo_file_code', '=', self.x_mojo_file_code)]):
+            print(f"Record ID: {record.id}")
+            for field_name, field_value in record.read()[0].items():
+                print(f"{field_name}: {field_value}")
