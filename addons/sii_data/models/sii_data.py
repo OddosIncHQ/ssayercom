@@ -1,24 +1,19 @@
-import csv
-from odoo import models, fields, api
+from odoo import models, fields
 
 class SiiData(models.Model):
     _name = 'sii.data'
-    _description = 'Datos extraídos del SII'
+    _description = 'SII Data'
 
     name = fields.Char(string='Name', required=True)
-    partner_id = fields.Many2one('res.partner', string='Contacto', ondelete='cascade')
-    tipo_contribuyente = fields.Char(string='Tipo de Contribuyente')
-    tipo = fields.Char(string='Tipo')
-    giro_informado = fields.Char(string='Giro Informado')
-    codigo_actividad_informado = fields.Char(string='Código de Actividad Informado')
-    oficina_tramites = fields.Char(string='Oficina para Trámites Presenciales')
-
-    @api.model
-    def import_csv(self, file_path):
-        with open(file_path, 'r', encoding='utf-8') as file:
-            reader = csv.reader(file)
-            data = list(reader)
-
-            partner = None
-            for i, line in enumerate(data):
-                if i == 0:  # Asumimos que la primera línea tiene el VA
+    vat_cl = fields.Char(string='RUT')
+    sii_pass = fields.Char(string='SII Pass')
+    email = fields.Char(string='Email')
+    phone = fields.Char(string='Phone')
+    company_id = fields.Many2one('res.company', string='Company')
+    # Agrega otros campos según tus necesidades
+    address = fields.Char(string='Address')
+    city = fields.Char(string='City')
+    state_id = fields.Many2one('res.country.state', string='State')
+    country_id = fields.Many2one('res.country', string='Country')
+    zip = fields.Char(string='ZIP')
+    active = fields.Boolean(string='Active', default=True)
