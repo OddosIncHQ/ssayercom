@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_contact_form_automation,access_contact_form_automation,model_contact_form_automation,,1,1,1,1
