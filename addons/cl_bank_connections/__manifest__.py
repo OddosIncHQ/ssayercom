@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 {
     'name': "Conexiones bancarias para Chile y México",
 

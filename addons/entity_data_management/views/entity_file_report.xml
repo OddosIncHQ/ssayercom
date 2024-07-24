@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_tree_entity_file_report" model="ir.ui.view">
+        <field name="name">entity.file.report.tree</field>
+        <field name="model">entity.data</field>
+        <field name="arch" type="xml">
+            <tree string="File Report">
+                <field name="file_code"/>
+                <field name="vat"/>
+                <field name="date_time"/>
+                <field name="upload_datetime"/>
+                <field name="type"/>
+                <field name="upload_type"/>
+                <field name="file_attachment"/>
+                <field name="file_processed"/>
+                <field name="pdf_form_result"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
