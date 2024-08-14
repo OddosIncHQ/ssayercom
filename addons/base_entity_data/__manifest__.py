@@ -1,4 +1,3 @@
-
 {
     'name': 'Base Entity Data',
     'version': '1.0',

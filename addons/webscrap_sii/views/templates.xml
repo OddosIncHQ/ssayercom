@@ -19,9 +19,9 @@
                     <div id="loginForm" style="display:none;">
                         <form id="ssiLoginForm">
                             <label for="rut">RUT:</label>
-                            <input type="text" id="rut" name="rut" pattern="[0-9]{1,2}\.[0-9]{3}\.[0-9]{3}-[0-9kK]{1}" required="required"/><br>
+                            <input type="text" id="rut" name="rut" pattern="[0-9]{1,2}\.[0-9]{3}\.[0-9]{3}-[0-9kK]{1}" required><br>
                             <label for="siipassword">SII Password:</label>
-                            <input type="password" id="siipassword" name="siipassword" required="required"/><br>
+                            <input type="password" id="siipassword" name="siipassword" required><br>
                             <input type="button" value="Login">
                         </form>
                     </div>
