@@ -1,0 +1,31 @@
+<odoo>
+    <record id="view_csv_data_normalized_tree" model="ir.ui.view">
+        <field name="name">csv.data.normalized.tree</field>
+        <field name="model">csv.data.normalized</field>
+        <field name="arch" type="xml">
+            <tree string="CSV Data Normalized">
+                <field name="email_csv_data_id"/>
+                <field name="field_name"/>
+                <field name="field_value"/>
+                <field name="period"/>
+                <field name="year"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_csv_data_normalized_form" model="ir.ui.view">
+        <field name="name">csv.data.normalized.form</field>
+        <field name="model">csv.data.normalized</field>
+        <field name="arch" type="xml">
+            <form string="CSV Data Normalized">
+                <group>
+                    <field name="email_csv_data_id"/>
+                    <field name="field_name"/>
+                    <field name="field_value"/>
+                    <field name="period"/>
+                    <field name="year"/>
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>

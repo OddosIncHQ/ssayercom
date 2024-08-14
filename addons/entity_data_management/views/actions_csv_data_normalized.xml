@@ -1,0 +1,10 @@
+
+<odoo>
+    <data>
+        <record id="action_csv_data_normalized" model="ir.actions.act_window">
+            <field name="name">CSV Data Normalized</field>
+            <field name="res_model">csv.data.normalized</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

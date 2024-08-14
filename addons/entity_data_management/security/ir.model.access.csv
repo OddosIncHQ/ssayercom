@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_entity_data,access_entity_data,model_entity_data,base.group_user,1,1,1,1
+access_mail_config,access_mail_config,model_mail_config,base.group_user,1,1,1,1
+access_entity_file_upload,access_entity_file_upload,model_entity_file_upload,base.group_user,1,1,1,1
+access_pn_entity_data,access_pn_entity_data,model_pn_entity_data,base.group_user,1,1,1,1
+access_pj_entity_data,access_pj_entity_data,model_pj_entity_data,base.group_user,1,1,1,1
+access_oth_entity_data,access_oth_entity_data,model_oth_entity_data,base.group_user,1,1,1,1
+access_email_processing,access_email_processing,model_email_processing,base.group_user,1,1,1,1
+access_email_csv_data,access_email_csv_data,model_email_csv_data,base.group_user,1,1,1,1
+access_csv_data_normalized,access_csv_data_normalized,model_csv_data_normalized,base.group_user,1,1,1,1

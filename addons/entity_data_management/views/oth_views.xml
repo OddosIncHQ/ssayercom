@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_oth_entity_data_form" model="ir.ui.view">
+        <field name="name">oth.entity.data.form</field>
+        <field name="model">oth.entity.data</field>
+        <field name="arch" type="xml">
+            <form string="Other Entity Data">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="vat"/>
+                        <field name="type"/>
+                        <field name="date_time"/>
+                        <field name="file_code"/>
+                        <field name="file_attachment"/>
+                        <field name="file_processed"/>
+                        <field name="pdf_form_result"/>
+                        <field name="upload_datetime"/>
+                        <field name="upload_type"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_oth_entity_data_tree" model="ir.ui.view">
+        <field name="name">oth.entity.data.tree</field>
+        <field name="model">oth.entity.data</field>
+        <field name="arch" type="xml">
+            <tree string="Other Entity Data">
+                <field name="name"/>
+                <field name="vat"/>
+                <field name="type"/>
+                <field name="date_time"/>
+                <field name="file_code"/>
+                <field name="upload_datetime"/>
+                <field name="upload_type"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
+
+<!-- Merged content from pj_views.xml -->
+<odoo>
+    <record id="view_pj_entity_data_form" model="ir.ui.view">
+        <field name="name">pj.entity.data.form</field>
+        <field name="model">pj.entity.data</field>
+        <field name="arch" type="xml">
+            <form string="Persona Jurídica Data">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="vat"/>
+                        <field name="type"/>
+                        <field name="date_time"/>
+                        <field name="file_code"/>
+                        <field name="file_attachment"/>
+                        <field name="file_processed"/>
+                        <field name="pdf_form_result"/>
+                        <field name="upload_datetime"/>
+                        <field name="upload_type"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_pj_entity_data_tree" model="ir.ui.view">
+        <field name="name">pj.entity.data.tree</field>
+        <field name="model">pj.entity.data</field>
+        <field name="arch" type="xml">
+            <tree string="Persona Jurídica Data">
+                <field name="name"/>
+                <field name="vat"/>
+                <field name="type"/>
+                <field name="date_time"/>
+                <field name="file_code"/>
+                <field name="upload_datetime"/>
+                <field name="upload_type"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
+
+<!-- Merged content from pn_view.xml -->
+<odoo>
+    <record id="view_pn_entity_data_form" model="ir.ui.view">
+        <field name="name">pn.entity.data.form</field>
+        <field name="model">pn.entity.data</field>
+        <field name="arch" type="xml">
+            <form string="Persona Natural Data">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="vat"/>
+                        <field name="type"/>
+                        <field name="date_time"/>
+                        <field name="file_code"/>
+                        <field name="file_attachment"/>
+                        <field name="file_processed"/>
+                        <field name="pdf_form_result"/>
+                        <field name="upload_datetime"/>
+                        <field name="upload_type"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_pn_entity_data_tree" model="ir.ui.view">
+        <field name="name">pn.entity.data.tree</field>
+        <field name="model">pn.entity.data</field>
+        <field name="arch" type="xml">
+            <tree string="Persona Natural Data">
+                <field name="name"/>
+                <field name="vat"/>
+                <field name="type"/>
+                <field name="date_time"/>
+                <field name="file_code"/>
+                <field name="upload_datetime"/>
+                <field name="upload_type"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
