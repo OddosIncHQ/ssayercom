@@ -1,0 +1,51 @@
+<odoo>
+    <!-- Tree View Definition -->
+    <record id="view_email_processing_tree" model="ir.ui.view">
+        <field name="name">email.processing.tree</field>
+        <field name="model">email.processing</field>
+        <field name="arch" type="xml">
+            <tree string="Email Processing">
+                <field name="name"/>
+                <field name="email_id"/>
+                <field name="sender"/>
+                <field name="subject"/>
+                <field name="received_date"/>
+                <field name="process_date"/>
+                <field name="processed"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View Definition -->
+    <record id="view_email_processing_form" model="ir.ui.view">
+        <field name="name">email.processing.form</field>
+        <field name="model">email.processing</field>
+        <field name="arch" type="xml">
+            <form string="Email Processing">
+                <group>
+                    <field name="name"/>
+                    <field name="email_id"/>
+                    <field name="sender"/>
+                    <field name="subject"/>
+                    <field name="received_date"/>
+                    <field name="process_date"/>
+                    <field name="processed"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View Definition -->
+    <record id="view_email_processing_search" model="ir.ui.view">
+        <field name="name">email.processing.search</field>
+        <field name="model">email.processing</field>
+        <field name="arch" type="xml">
+            <search string="Email Processing">
+                <field name="name"/>
+                <field name="sender"/>
+                <field name="subject"/>
+                <field name="processed"/>
+            </search>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,32 @@
+<odoo>
+    <record id="view_email_csv_data_tree" model="ir.ui.view">
+        <field name="name">email.csv.data.tree</field>
+        <field name="model">email.csv.data</field>
+        <field name="arch" type="xml">
+            <tree>
+                                <field name="csv_file_name"/>
+                
+                <field name="rut"/>
+                <field name="csv_creation_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_csv_data_normalized_tree" model="ir.ui.view">
+        <field name="name">csv.data.normalized.tree</field>
+        <field name="model">csv.data.normalized</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="email_csv_data_id"/>
+                <field name="field_name"/>
+                <field name="field_value"/>
+                <field name="period"/>
+                <field name="year"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="menu_email_csv_data" name="Email CSV Data" sequence="10"/>
+    <menuitem id="submenu_email_csv_data" name="Email CSV Data" parent="menu_email_csv_data" action="action_email_csv_data"/>
+    <menuitem id="submenu_csv_data_normalized" name="CSV Data Normalized" parent="menu_email_csv_data" action="action_csv_data_normalized"/>
+</odoo>

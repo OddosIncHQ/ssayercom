@@ -1,0 +1,33 @@
+<odoo>
+    <menuitem id="menu_docdocks_root" name="DocDocks" sequence="1" />
+
+    <menuitem id="menu_docdocks_entity_data_management"
+              name="Entity Data Management"
+              parent="menu_docdocks_root"
+              sequence="2"
+              action="action_entity_data_management"/>
+
+    <menuitem id="menu_docdocks_file_upload"
+              name="File Upload"
+              parent="menu_docdocks_root"
+              sequence="3"
+              action="action_file_upload"/>
+
+    <menuitem id="menu_docdocks_email_processing"
+              name="Email Processing"
+              parent="menu_docdocks_root"
+              sequence="4"
+              action="action_email_processing"/>
+
+    <menuitem id="menu_personas_naturales"
+              name="Personas Naturales"
+              parent="menu_docdocks_root"
+              sequence="5"
+              action="action_pn_entity_data"/>
+
+    <menuitem id="menu_otros"
+              name="Otras Entidades"
+              parent="menu_docdocks_root"
+              sequence="6"
+              action="action_oth_entity_data"/>
+</odoo>

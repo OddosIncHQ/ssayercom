@@ -1,0 +1,18 @@
+<odoo>
+    <record id="view_entity_data_tree" model="ir.ui.view">
+        <field name="name">entity.data.tree</field>
+        <field name="model">entity.data</field>
+        <field name="arch" type="xml">
+            <tree string="Entity Data">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="vat"/>
+                <field name="type"/>
+                <field name="date_time"/>
+                <field name="file_code"/>
+                <field name="upload_datetime"/>
+                <field name="upload_type"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

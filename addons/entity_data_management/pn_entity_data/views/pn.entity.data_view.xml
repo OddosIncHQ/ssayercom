@@ -1,0 +1,15 @@
+<odoo>
+    <record id="view_pn.entity.data_form" model="ir.ui.view">
+        <field name="name">pn.entity.data.form</field>
+        <field name="model">pn.entity.data</field>
+        <field name="arch" type="xml">
+            <form string="Pn Entity Data">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
