@@ -1,6 +1,0 @@
-<odoo>
-    <record id="model_fetchmail_server" model="ir.model">
-        <field name="name">fetchmail.server</field>
-        <field name="model">fetchmail.server</field>
-    </record>
-</odoo>
