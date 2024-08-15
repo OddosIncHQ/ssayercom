@@ -6,23 +6,24 @@
     'author': 'Oddos Solutions LLC',
     'maintainer': 'Oddos Solutions LLC',
     'website': 'https://www.ssayer.tech',
-    'depends': ['base', 'mail', 'contacts', 'entity.data', 'pj.entity.data', 'pn.entity.data', 'oth.entity.data', 'email.processing'],
+    'depends': ['base', 'mail', 'contacts', 'entity.data', 'pj.entity.data', 'pn.entity.data', 'oth.entity.data', 'email.processing'],  # Necessary dependencies
     'data': [
-        'views/view_entity_data_form.xml',     
-        'views/view_entity_data_tree.xml', 
-        'email_processing/views/email_processing_view.xml', 
-        'email_processing/views/view_email_processing_tree.xml',  # Updated path
-        'views/actions_email_csv_data.xml',    
-        'views/view_email_csv_data_tree.xml',    
+        'views/view_entity_data_form.xml',
+        'views/view_entity_data_tree.xml',
+        'email_processing/views/email_processing_view.xml',
+        'email_processing/views/view_email_processing_tree.xml',
+        'views/actions_email_csv_data.xml',
+        'views/view_email_csv_data_tree.xml',
         'views/view_entity_file_upload_form.xml',
         'views/actions_entity_data_management.xml',
-        'views/entity_data_management_action_email_processing.xml',  
-        'views/docdocks_menu.xml',               
-        'views/mail_config_view.xml',            
-        'views/scheduled_actions.xml',           
-        'views/fetchmail_server_views.xml',      
-        'views/oth_views.xml',                    
-        'security/ir.model.access.csv',          
+        'views/entity_data_management_action_email_processing.xml',
+        'views/docdocks_menu.xml',
+        'views/mail_config_view.xml',
+        'views/scheduled_actions.xml',
+        'views/fetchmail_server_views.xml',
+        'views/oth_views.xml',
+        'mail_message_viewer/views/mail_message_views.xml',  # Add this line
+        'security/ir.model.access.csv',
     ],
 
     'images': [
@@ -35,7 +36,7 @@
         'demo/reporte-6699d96444238cbe47789301.csv',
         'demo/reporte-6699dad244238cbe47789305.csv',
     ],
-'installable': True,
+    'installable': True,
     'application': True,
     'description': """
     Proprietary module developed by Oddos Solutions LLC for SoothSayer Holdings LLC.
