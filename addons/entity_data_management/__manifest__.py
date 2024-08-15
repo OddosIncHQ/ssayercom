@@ -6,7 +6,7 @@
     'author': 'Oddos Solutions LLC',
     'maintainer': 'Oddos Solutions LLC',
     'website': 'https://www.ssayer.tech',
-    'depends': ['base', 'mail', 'contacts', 'entity.data', 'pj.entity.data', 'pn.entity.data', 'oth.entity.data', 'email.processing'],  # Dependencias necesarias
+    'depends': ['base', 'mail', 'contacts', 'entity.data', 'pj.entity.data', 'pn.entity.data', 'oth.entity.data', 'email.processing'],
     'data': [
         'views/view_entity_data_form.xml',     
         'views/view_entity_data_tree.xml', 
