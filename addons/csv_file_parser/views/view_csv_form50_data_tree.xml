@@ -1,0 +1,12 @@
+<odoo>
+    <record id="view_csv_form50_data_tree" model="ir.ui.view">
+        <field name="name">csv.form50.data.tree</field>
+        <field name="model">csv.form50.data</field>
+        <field name="arch" type="xml">
+            <tree string="Form 50 Data">
+                <field name="code"/>
+                <field name="value"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

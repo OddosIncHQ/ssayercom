@@ -1,0 +1,65 @@
+<odoo>
+    <!-- Tree View for Parsed CSV Data -->
+    <record id="view_csv_parsed_data_tree" model="ir.ui.view">
+        <field name="name">csv.parsed.data.tree</field>
+        <field name="model">csv.parsed.data</field>
+        <field name="arch" type="xml">
+            <tree string="Parsed CSV Data" readonly="1">  <!-- Set the tree to read-only -->
+                <field name="file_name" readonly="1"/>  <!-- Ensure this field exists in the model -->
+                <field name="parser_id" readonly="1"/>
+                <field name="rut_id" readonly="1"/>
+                <field name="form_22" readonly="1"/>
+                <field name="form_29" readonly="1"/>
+                <field name="form_50" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View for Parsed CSV Data -->
+    <record id="view_csv_parsed_data_form" model="ir.ui.view">
+        <field name="name">csv.parsed.data.form</field>
+        <field name="model">csv.parsed.data</field>
+        <field name="arch" type="xml">
+            <form string="Parsed CSV Data">
+                <sheet>
+                    <group>
+                        <field name="file_name" readonly="1"/> <!-- Ensure this field exists in the model -->
+                        <field name="parser_id" readonly="1"/>
+                        <field name="rut_id" readonly="1"/>
+                        <notebook>
+                            <!-- Forms Page -->
+                            <page string="Forms">
+                                <group>
+                                    <field name="form_22" readonly="1"/>
+                                    <!-- Conditionally show form_22_data if form_22 is True -->
+                                    <field name="form_22_data" attrs="{'invisible': [('form_22', '=', False)]}" readonly="1"/>
+
+                                    <field name="form_29" readonly="1"/>
+                                    <!-- Conditionally show form_29_data if form_29 is True -->
+                                    <field name="form_29_data" attrs="{'invisible': [('form_29', '=', False)]}" readonly="1"/>
+
+                                    <field name="form_50" readonly="1"/>
+                                    <!-- Conditionally show form_50_data if form_50 is True -->
+                                    <field name="form_50_data" attrs="{'invisible': [('form_50', '=', False)]}" readonly="1"/>
+                                </group>
+                            </page>
+
+                            <!-- Declarations Page -->
+                            <page string="Declarations">
+                                <group>
+                                    <field name="dj_1907" readonly="1"/>
+                                    <!-- Conditionally show dj_1907_data if dj_1907 is True -->
+                                    <field name="dj_1907_data" attrs="{'invisible': [('dj_1907', '=', False)]}" readonly="1"/>
+
+                                    <field name="dj_1913" readonly="1"/>
+                                    <!-- Conditionally show dj_1913_data if dj_1913 is True -->
+                                    <field name="dj_1913_data" attrs="{'invisible': [('dj_1913', '=', False)]}" readonly="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

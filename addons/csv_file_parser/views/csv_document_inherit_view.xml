@@ -1,0 +1,42 @@
+<odoo>
+    <!-- Tree View Inheritance for CSV Documents -->
+    <record id="view_document_tree_inherit_csv" model="ir.ui.view">
+        <field name="name">documents.document.csv.tree</field>
+        <field name="model">documents.document</field>
+        <field name="inherit_id" ref="documents.documents_view_list"/> <!-- Corrected reference for tree view -->
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <field name="is_csv_file" invisible="1"/>
+                <field name="related_csv_parser_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Form View Inheritance for CSV Documents -->
+    <record id="view_document_form_inherit_csv" model="ir.ui.view">
+        <field name="name">documents.document.csv.form</field>
+        <field name="model">documents.document</field>
+        <field name="inherit_id" ref="documents.document_view_form"/>  <!-- Corrected reference for form view -->
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group>
+                    <field name="is_csv_file" invisible="1"/>
+                    <field name="related_csv_parser_id"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- CSV Specific Document Action -->
+    <record id="csv_document_action" model="ir.actions.act_window">
+        <field name="name">CSV Documents</field>
+        <field name="res_model">documents.document</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_csv_file', '=', True)]</field> <!-- Filter to only show CSV files -->
+    </record>
+
+    <!-- Menuitem for CSV Document Management -->
+    <menuitem id="menu_csv_document_management" name="CSV Document Manager"
+              parent="documents.menu_root"
+              action="csv_document_action"/>
+</odoo>

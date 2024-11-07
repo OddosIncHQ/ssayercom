@@ -1,0 +1,18 @@
+<odoo>
+    <!-- Tree View for Failed CSV Files -->
+    <record id="view_csv_file_parser_failed_tree" model="ir.ui.view">
+        <field name="name">csv.file.parser.failed.tree</field>
+        <field name="model">csv.file.parser</field>
+        <field name="arch" type="xml">
+            <tree string="Failed CSV Files">
+                <field name="name"/>
+                <field name="file_name"/>
+                <field name="rut_id"/> <!-- Display RUT for additional context -->
+                <field name="related_document_id"/> <!-- Display Related Document -->
+                <field name="progress_status" widget="statusbar" readonly="1"/> <!-- Display status as progress bar -->
+                <field name="parsing_result" readonly="1"/>
+                <button name="parse_csv_file" type="object" string="Reprocess" icon="fa-refresh"/> <!-- Reprocess Button -->
+            </tree>
+        </field>
+    </record>
+</odoo>

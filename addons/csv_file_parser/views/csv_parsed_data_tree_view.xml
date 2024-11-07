@@ -1,0 +1,60 @@
+<odoo>
+    <record id="view_csv_parsed_data_tree" model="ir.ui.view">
+        <field name="name">csv.parsed.data.tree</field>
+        <field name="model">csv.parsed.data</field>
+        <field name="arch" type="xml">
+            <tree string="Parsed CSV Data">
+                <field name="file_name"/>
+                <field name="parser_id"/>
+                <field name="rut_id"/>
+                <field name="form_22"/>
+                <field name="form_29"/>
+                <field name="form_50"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_csv_parsed_data_form" model="ir.ui.view">
+        <field name="name">csv.parsed.data.form</field>
+        <field name="model">csv.parsed.data</field>
+        <field name="arch" type="xml">
+            <form string="Parsed CSV Data">
+                <sheet>
+                    <group>
+                        <field name="file_name"/>
+                        <field name="parser_id"/>
+                        <field name="rut_id"/>
+                        <notebook>
+                            <page string="Forms">
+                                <group>
+                                    <field name="form_22"/>
+                                    <!-- Conditionally show form_22_data if form_22 is True -->
+                                    <field name="form_22_data" modifiers="{'invisible': [('form_22', '=', False)]}"/>
+                                    
+                                    <field name="form_29"/>
+                                    <!-- Conditionally show form_29_data if form_29 is True -->
+                                    <field name="form_29_data" modifiers="{'invisible': [('form_29', '=', False)]}"/>
+                                    
+                                    <field name="form_50"/>
+                                    <!-- Conditionally show form_50_data if form_50 is True -->
+                                    <field name="form_50_data" modifiers="{'invisible': [('form_50', '=', False)]}"/>
+                                </group>
+                            </page>
+                            <page string="Declarations">
+                                <group>
+                                    <field name="dj_1907"/>
+                                    <!-- Conditionally show dj_1907_data if dj_1907 is True -->
+                                    <field name="dj_1907_data" modifiers="{'invisible': [('dj_1907', '=', False)]}"/>
+                                    
+                                    <field name="dj_1913"/>
+                                    <!-- Conditionally show dj_1913_data if dj_1913 is True -->
+                                    <field name="dj_1913_data" modifiers="{'invisible': [('dj_1913', '=', False)]}"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

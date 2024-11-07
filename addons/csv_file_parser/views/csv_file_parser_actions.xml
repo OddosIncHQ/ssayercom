@@ -1,0 +1,72 @@
+<odoo>
+    <record id="action_csv_form22_data" model="ir.actions.act_window">
+        <field name="name">Form 22 Data</field>
+        <field name="res_model">csv.form22.data</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_csv_form22_data_tree"/>
+        <field name="help" type="html">
+            <p>Here you can review all parsed Form 22 data from the CSV files.</p>
+        </field>
+    </record>
+
+    <record id="action_csv_form50_data" model="ir.actions.act_window">
+        <field name="name">Form 50 Data</field>
+        <field name="res_model">csv.form50.data</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_csv_form50_data_tree"/>
+        <field name="help" type="html">
+            <p>Here you can review all parsed Form 50 data from the CSV files.</p>
+        </field>
+    </record>
+    
+    <!-- Action for viewing CSV File Parser -->
+    <record id="csv_file_parser_action" model="ir.actions.act_window">
+        <field name="name">CSV File Parser</field>
+        <field name="res_model">csv.file.parser</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Upload and parse CSV files.
+            </p>
+        </field>
+    </record>
+
+    <!-- Action for viewing parsed data -->
+    <record id="action_csv_parsed_data" model="ir.actions.act_window">
+        <field name="name">Parsed Data</field>
+        <field name="res_model">csv.parsed.data</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                View parsed data from CSV files.
+            </p>
+        </field>
+    </record>
+
+    <!-- Action for Quick Section Analysis -->
+    <record id="action_csv_file_section_analysis" model="ir.actions.act_window">
+        <field name="name">Quick Section Analysis</field>
+        <field name="res_model">csv.parsed.data</field> <!-- Correct model -->
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Perform a quick analysis on the sections of the parsed CSV files.
+            </p>
+        </field>
+    </record>
+
+    <!-- Action for settings (Corrected model reference) -->
+    <record id="csv_file_parser_settings_action" model="ir.actions.act_window">
+        <field name="name">CSV File Parser Settings</field>
+        <field name="res_model">res.config.settings</field> <!-- Corrected model reference -->
+        <field name="view_mode">form</field>
+        <field name="target">new</field> <!-- Settings actions usually open in a modal window -->
+    </record>
+
+    <!-- Action for CSV Field Definitions -->
+    <record id="action_csv_field_definition" model="ir.actions.act_window">
+        <field name="name">CSV Field Definitions</field>
+        <field name="res_model">csv.field.definition</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

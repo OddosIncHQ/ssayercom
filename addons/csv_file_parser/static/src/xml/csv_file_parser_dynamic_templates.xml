@@ -1,0 +1,74 @@
+<templates id="template" xml:space="preserve">
+    <t t-name="CSVFileParserComponentTemplate">
+        <!-- Display for Form 22 -->
+        <t t-if="displayForm22">
+            <div>
+                <h2>Form 22 Data</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Table Column</th>
+                            <th>Field Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="props.parsedData" t-as="row">
+                            <tr>
+                                <td><t t-esc="row.table_column"/></td>
+                                <td><t t-esc="row.field_value"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+
+        <!-- Display for Form 50 -->
+        <t t-if="displayForm50">
+            <div>
+                <h2>Form 50 Data</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Table Column</th>
+                            <th>Field Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="props.parsedData" t-as="row">
+                            <tr>
+                                <td><t t-esc="row.table_column"/></td>
+                                <td><t t-esc="row.field_value"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+
+        <!-- Display for Other Forms -->
+        <t t-if="displayOtherForms">
+            <div>
+                <h2>Other Forms Data</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Form Section</th>
+                            <th>Table Column</th>
+                            <th>Field Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="props.parsedData" t-as="row">
+                            <tr>
+                                <td><t t-esc="row.form_section"/></td>
+                                <td><t t-esc="row.table_column"/></td>
+                                <td><t t-esc="row.field_value"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </t>
+</templates>

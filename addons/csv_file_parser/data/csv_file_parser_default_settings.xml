@@ -1,0 +1,43 @@
+<odoo>
+    <!-- Default settings for CSV File Parser -->
+    <record id="csv_file_parser_default_auto_parse" model="ir.config_parameter">
+        <field name="key">csv_file_parser.auto_parse</field>
+        <field name="value">False</field>  <!-- Set to True if you want auto-parse to be default -->
+    </record>
+
+    <record id="csv_file_parser_default_storage_workspace_id" model="ir.config_parameter">
+        <field name="key">csv_file_parser.storage_workspace_id</field>
+        <field name="value">0</field>  <!-- Adjust with a valid folder ID if needed -->
+    </record>
+
+    <record id="csv_file_parser_default_alias" model="ir.config_parameter">
+        <field name="key">csv_file_parser.alias</field>
+        <field name="value">file-csv-cl@sstechs.io</field>  <!-- Default alias for email parsing -->
+    </record>
+
+    <record id="csv_file_parser_default_markers" model="ir.config_parameter">
+        <field name="key">csv_file_parser.markers</field>
+        <field name="value">,</field>  <!-- Default delimiter is a comma -->
+    </record>
+
+    <record id="csv_file_parser_default_max_rows" model="ir.config_parameter">
+        <field name="key">csv_file_parser.max_rows</field>
+        <field name="value">0</field>  <!-- No limit by default; adjust as necessary -->
+    </record>
+
+    <record id="csv_file_parser_default_max_columns" model="ir.config_parameter">
+        <field name="key">csv_file_parser.max_columns</field>
+        <field name="value">0</field>  <!-- No limit by default; adjust as necessary -->
+    </record>
+
+    <!-- Added default row and column for the CSV parser -->
+    <record id="csv_file_parser_default_row_number" model="ir.config_parameter">
+        <field name="key">csv_file_parser.row_number</field>
+        <field name="value">2</field>  <!-- Start parsing from row 2 -->
+    </record>
+
+    <record id="csv_file_parser_default_column_number" model="ir.config_parameter">
+        <field name="key">csv_file_parser.column_number</field>
+        <field name="value">1</field>  <!-- Start parsing from column 1 -->
+    </record>
+</odoo>

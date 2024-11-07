@@ -1,0 +1,23 @@
+<odoo>
+    <!-- Search View for Failed CSV Files -->
+    <record id="view_csv_file_parser_failed_search" model="ir.ui.view">
+        <field name="name">csv.file.parser.failed.search</field>
+        <field name="model">csv.file.parser</field>
+        <field name="arch" type="xml">
+            <search string="Search Failed CSV Files">
+                <!-- Use input fields for search criteria -->
+                <field name="file_name" string="File Name"/>  <!-- Allow users to input file name -->
+                <field name="rut_id" string="RUT"/>  <!-- Allow searching by RUT -->
+                <field name="related_document_id" string="Related Document"/>  <!-- Allow searching by related document -->
+
+                <!-- Filter for failed CSV files -->
+                <filter string="Failed Files" name="failed_filter" domain="[('progress_status', '=', 'error')]"/>
+
+                <!-- Group By Parsing Status -->
+                <group expand="1" string="Group By Parsing Status">
+                    <filter string="Status" name="status_group" context="{'group_by': 'progress_status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+</odoo>

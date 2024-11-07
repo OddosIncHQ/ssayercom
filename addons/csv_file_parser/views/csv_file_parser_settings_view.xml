@@ -1,0 +1,36 @@
+<odoo>
+    <record id="view_csv_file_parser_settings_form" model="ir.ui.view">
+        <field name="name">csv.file.parser.settings.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="arch" type="xml">
+            <form string="CSV File Parser Settings">
+                <sheet>
+                    <!-- General Settings Group -->
+                    <group string="General Settings">
+                        <field name="auto_parse" help="Automatically parse uploaded CSV files."/>
+                        <field name="storage_workspace_id" help="Select the default workspace for storing parsed CSV files."/>
+                    </group>
+
+                    <!-- Email and Parsing Settings Group -->
+                    <group string="Email and Parsing Settings">
+                        <field name="alias" help="Specify the alias used for parsing emails."/>
+                        <field name="markers" help="Specify the delimiter used for CSV parsing (e.g., comma or semicolon)."/>
+                    </group>
+
+                    <!-- Matrix Size Settings Group -->
+                    <group string="Matrix Size Settings">
+                        <field name="max_rows" help="Specify the maximum number of rows (n) to parse from the CSV file."/>
+                        <field name="max_columns" help="Specify the maximum number of columns (m) to parse from the CSV file."/>
+                    </group>
+                </sheet>
+
+                <!-- Form Footer Buttons -->
+                <footer>
+                    <!-- Save button must have a 'name' attribute -->
+                    <button string="Save" type="object" class="btn-primary" name="set_values"/>  <!-- Calling set_values method -->
+                    <button string="Cancel" class="btn-secondary" special="cancel"/> <!-- Cancel action -->
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
