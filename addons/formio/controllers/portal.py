@@ -1,10 +1,10 @@
-# Copyright Nova Code (http://www.novacode.nl)
+# Copyright Nova Code (https://www.novacode.nl)
 # See LICENSE file for full licensing details.
 
 import json
 import logging
 
-from odoo import http, fields
+from odoo import fields, http, _
 from odoo.http import request
 from odoo.addons.portal.controllers.portal import CustomerPortal
 
@@ -13,7 +13,15 @@ from ..models.formio_form import (
     STATE_DRAFT as FORM_STATE_DRAFT,
     STATE_COMPLETE as FORM_STATE_COMPLETE,
 )
-from .utils import generate_uuid4, log_form_submisssion, validate_csrf
+
+from .exceptions import FormioException
+
+from .utils import (
+    generate_uuid4,
+    log_form_submisssion,
+    update_dict_allowed_keys,
+    validate_csrf,
+)
 
 _logger = logging.getLogger(__name__)
 
@@ -100,7 +108,7 @@ class FormioCustomerPortal(CustomerPortal):
     ####################
 
     @http.route(['/my/formio'], type='http', auth="user", website=True)
-    def portal_forms(self, sortby=None, search=None, search_in='content',  **kwargs):
+    def portal_forms(self, sortby=None, search=None, search_in='content', **kwargs):
         domain = [
             ('user_id', '=', request.env.user.id),
             ('portal_share', '=', True)
@@ -265,8 +273,8 @@ class FormioCustomerPortal(CustomerPortal):
     # Form - portal - new
     #####################
 
-    @http.route('/formio/portal/form/new/<string:builder_uuid>/config', type='http', auth='user', csrf=False, website=True)
-    def form_new_config(self, builder_uuid, **kwargs):
+    @http.route('/formio/portal/form/new/<string:builder_uuid>/config', type='http', auth='user', methods=['GET'], csrf=False, website=True)
+    def form_new_config(self, builder_uuid):
         builder = self._get_builder_uuid(builder_uuid)
         res = {'schema': {}, 'options': {}, 'params': {}}
 
@@ -274,31 +282,50 @@ class FormioCustomerPortal(CustomerPortal):
             return res
 
         if builder.schema:
-            res['schema'] = json.loads(builder.schema)
-            res['options'] = self._get_form_js_options(builder)
-            res['params'] = self._get_form_js_params(builder)
-            res['locales'] = self._get_form_js_locales(builder)
             res['csrf_token'] = request.csrf_token()
-
-        args = request.httprequest.args
-        etl_odoo_config = builder.sudo()._etl_odoo_config(params=args.to_dict())
-        res['options'].update(etl_odoo_config.get('options', {}))
-
+            try:
+                res['schema'] = json.loads(builder.schema)
+                res['options'] = self._get_form_js_options(builder)
+                res['locales'] = self._get_form_js_locales(builder)
+                res['params'] = self._get_form_js_params(builder)
+            except Exception as e:
+                formio_exception = FormioException(e)
+                error_message, error_traceback = formio_exception.render_exception_load()
+                res['error_message'] = error_message
+                if request.session.debug and request.env.user.has_group('base.group_user'):
+                    res['error_traceback'] = error_traceback
+        try:
+            args = request.httprequest.args
+            etl_odoo_config = builder.sudo()._etl_odoo_config(params=args.to_dict())
+            res['options'].update(etl_odoo_config.get('options', {}))
+        except Exception as e:
+            formio_exception = FormioException(e)
+            error_message, error_traceback = formio_exception.render_exception_load()
+            res['error_message'] = error_message
+            if request.session.debug and request.env.user.has_group('base.group_user'):
+                res['error_traceback'] = error_traceback
         return request.make_json_response(res)
 
-    @http.route('/formio/portal/form/new/<string:builder_uuid>/submission', type='http', auth='user', csrf=False, website=True)
-    def form_new_submission(self, builder_uuid, **kwargs):
+    @http.route('/formio/portal/form/new/<string:builder_uuid>/submission', type='http', auth='user', methods=['GET'], csrf=False, website=True)
+    def form_new_submission(self, builder_uuid):
         builder = self._get_builder_uuid(builder_uuid)
 
         if not builder:
             _logger.info('formio.builder with UUID %s not found' % builder_uuid)
-            # TODO raise or set exception (in JSON resonse) ?
-            return
+            res = {'error_message': _('The form was not found.')}
+            return request.make_json_response(res)
 
         args = request.httprequest.args
-        submission_data = {}
-        etl_odoo_data = builder.sudo()._etl_odoo_data(params=args.to_dict())
-        submission_data.update(etl_odoo_data)
+        submission_data = {'submission': {}}
+        try:
+            etl_odoo_data = builder.sudo()._etl_odoo_data(params=args.to_dict())
+            submission_data['submission'].update(etl_odoo_data)
+        except Exception as e:
+            formio_exception = FormioException(e)
+            error_message, error_traceback = formio_exception.render_exception_load()
+            submission_data['error_message'] = error_message
+            if request.session.debug and request.env.user.has_group('base.group_user'):
+                submission_data['error_traceback'] = error_traceback
         return request.make_json_response(submission_data)
 
     @http.route('/formio/portal/form/new/<string:builder_uuid>/submit', type='http', auth="user", methods=['POST'], csrf=False, website=True)
@@ -310,11 +337,13 @@ class FormioCustomerPortal(CustomerPortal):
         (frontend/JS code) to: /formio/form/<string:uuid>/submit
         """
         self.validate_csrf()
+        res = {}
         builder = self._get_builder_uuid(builder_uuid)
 
         if not builder:
-            # TODO raise or set exception (in JSON resonse) ?
-            return
+            _logger.info('formio.builder with UUID %s not found' % builder_uuid)
+            res = {'error_message': _('The form was not found.')}
+            return request.make_json_response(res)
 
         post = request.get_json_data()
         Form = request.env['formio.form']
@@ -338,22 +367,28 @@ class FormioCustomerPortal(CustomerPortal):
             vals['state'] = FORM_STATE_COMPLETE
 
         context = {'tracking_disable': True}
-        form = Form.with_context(**context).create(vals)
 
-        if vals.get('state') == FORM_STATE_COMPLETE:
-            form.after_submit()
-        elif vals.get('state') == FORM_STATE_DRAFT:
-            form.after_save_draft()
-        request.session['formio_last_form_uuid'] = form.uuid
-
-        # debug mode is checked/handled
-        log_form_submisssion(form)
-
-        res = {
+        try:
+            form = Form.with_context(**context).create(vals)
+            if vals.get('state') == FORM_STATE_COMPLETE:
+                form.after_submit()
+            elif vals.get('state') == FORM_STATE_DRAFT:
+                form.after_save_draft()
+            request.session['formio_last_form_uuid'] = form.uuid
+            # debug mode is checked/handled
+            log_form_submisssion(form)
+        except Exception as e:
+            formio_exception = FormioException(e, form=form)
+            error_message, error_traceback = formio_exception.render_exception_submit()
+            res['error_message'] = error_message
+            if request.session.debug and request.env.user.has_group('base.group_user'):
+                res['error_traceback'] = error_traceback
+            form.write({'state': 'ERROR'})
+        res.update({
             'form_uuid': form.uuid,
             'submission_data': form.submission_data
-        }
-        request.make_json_response(res)
+        })
+        return request.make_json_response(res)
 
     #########
     # Helpers
@@ -386,7 +421,17 @@ class FormioCustomerPortal(CustomerPortal):
         return builder._get_form_js_locales()
 
     def _get_form_js_params(self, builder):
-        return builder._get_portal_form_js_params()
+        params = builder._get_portal_form_js_params()
+        args = request.httprequest.args
+        args_dict = args.to_dict()
+        if bool(args_dict):
+            params = update_dict_allowed_keys(
+                params, args_dict, self._allowed_form_js_params_from_url(builder)
+            )
+        return params
+
+    def _allowed_form_js_params_from_url(self, builder):
+        return builder._allowed_form_js_params_from_url()
 
     def validate_csrf(self):
         validate_csrf(request)

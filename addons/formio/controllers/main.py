@@ -11,13 +11,13 @@ try:
 except ImportError:
     from odoo.tools._vendor.send_file import send_file
 
-from odoo import http
+from odoo import http, _
 from odoo.http import request
 
 _logger = logging.getLogger(__name__)
 
 
-class LicenseController(http.Controller):
+class FormioBaseController(http.Controller):
 
     @http.route(['/web/content/<int:id>/fonts/<string:name>'], type='http', auth="public")
     def send_fonts_file(self, id, name, **kwargs):

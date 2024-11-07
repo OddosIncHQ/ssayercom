@@ -7,7 +7,7 @@ import uuid
 
 from odoo.http import MISSING_CSRF_WARNING, request
 
-from ..exceptions import BadCSRF
+from .exceptions import BadCSRF
 
 
 _logger = logging.getLogger(__name__)
@@ -39,6 +39,13 @@ def log_form_submisssion(form, debug_mode=True):
             'Submission data',
             json.dumps(submission_data, indent=4, sort_keys=True)
         )
+
+
+def update_dict_allowed_keys(dict_to_update, dict_updates, allowed_keys=[]):
+    for k, v in dict_updates.items():
+        if k in allowed_keys:
+            dict_to_update[k] = v
+    return dict_to_update
 
 
 def validate_csrf(request):

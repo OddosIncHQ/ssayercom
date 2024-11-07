@@ -1,17 +1,25 @@
-# Copyright Nova Code (http://www.novacode.nl)
+# Copyright Nova Code (https://www.novacode.nl)
 # See LICENSE file for full licensing details.
 
 import json
 import logging
 
-from odoo import http, fields
+from odoo import http, fields, _
 from odoo.http import request
 
 from ..models.formio_form import (
     STATE_DRAFT as FORM_STATE_DRAFT,
     STATE_COMPLETE as FORM_STATE_COMPLETE,
 )
-from .utils import generate_uuid4, log_form_submisssion, validate_csrf
+
+from .exceptions import FormioException
+
+from .utils import (
+    generate_uuid4,
+    log_form_submisssion,
+    update_dict_allowed_keys,
+    validate_csrf,
+)
 
 _logger = logging.getLogger(__name__)
 
@@ -52,7 +60,7 @@ class FormioController(http.Controller):
         }
         return request.render('formio.formio_builder_embed', values)
 
-    @http.route('/formio/builder/<int:builder_id>/config', type='http', auth='user', methods=['POST'], csrf=False, website=True)
+    @http.route('/formio/builder/<int:builder_id>/config', type='http', auth='user', methods=['GET'], csrf=False)
     def builder_config(self, builder_id):
         if not request.env.user.has_group('formio.group_formio_admin'):
             return
@@ -115,7 +123,7 @@ class FormioController(http.Controller):
         }
         return request.render('formio.formio_form_embed', values)
 
-    @http.route('/formio/form/<string:form_uuid>/config', type='http', auth='user', csrf=False, website=True)
+    @http.route('/formio/form/<string:form_uuid>/config', type='http', auth='user', methods=['GET'], csrf=False, website=True)
     def form_config(self, form_uuid):
         form = self._get_form(form_uuid, 'read')
         # TODO remove config (key)
@@ -129,38 +137,53 @@ class FormioController(http.Controller):
             res['csrf_token'] = request.csrf_token()
         return request.make_json_response(res)
 
-    @http.route('/formio/form/<string:uuid>/submission', type='http', auth='user', csrf=False, website=True)
+    @http.route('/formio/form/<string:uuid>/submission', type='http', auth='user', methods=['GET'], csrf=False, website=True)
     def form_submission(self, uuid):
         form = self._get_form(uuid, 'read')
 
         # Submission data
         if form and form.submission_data:
-            submission_data = json.loads(form.submission_data)
+            submission_data = {'submission': json.loads(form.submission_data)}
         else:
-            submission_data = {}
+            submission_data = {'submission': {}}
 
         # ETL Odoo data
         if form:
-            etl_odoo_data = form.sudo()._etl_odoo_data()
-            submission_data.update(etl_odoo_data)
+            try:
+                etl_odoo_data = form.sudo()._etl_odoo_data()
+                submission_data['submission'].update(etl_odoo_data)
+            except Exception as e:
+                formio_exception = FormioException(e, form=form)
+                error_message, error_traceback = formio_exception.render_exception_load()
+                submission_data['error_message'] = error_message
+                if request.session.debug and request.env.user.has_group('base.group_user'):
+                    submission_data['error_traceback'] = error_traceback
 
         return request.make_json_response(submission_data)
 
     @http.route('/formio/form/<string:uuid>/submit', type='http', auth="user", methods=['POST'], csrf=False, website=True)
     def form_submit(self, uuid):
         """ POST with ID instead of uuid, to get the model object right away """
+        res = {
+            'form_uuid': uuid
+        }
         self.validate_csrf()
+
         form = self._get_form(uuid, 'write')
-        if not form or form.state == FORM_STATE_COMPLETE:
-            # TODO raise or set exception (in JSON resonse) ?
-            return
+        if not form:
+            res['error_message'] = _('The form was not found.')
+            return request.make_json_response(res)
+        if form.state == FORM_STATE_COMPLETE:
+            res['error_message'] = _('The form has already been submitted.')
+            res['options'] = {'readOnly': True}
+            return request.make_json_response(res)
+
         post = request.get_json_data()
         vals = {
             'submission_data': json.dumps(post['data']),
             'submission_user_id': request.env.user.id,
             'submission_date': fields.Datetime.now(),
         }
-
         if post.get('saveDraft') or (
             post['data'].get('saveDraft') and not post['data'].get('submit')
         ):
@@ -168,20 +191,21 @@ class FormioController(http.Controller):
         else:
             vals['state'] = FORM_STATE_COMPLETE
 
-        form.write(vals)
-
-        if vals.get('state') == FORM_STATE_COMPLETE:
-            form.after_submit()
-        elif vals.get('state') == FORM_STATE_DRAFT:
-            form.after_save_draft()
-
-        # debug mode is checked/handled
-        log_form_submisssion(form)
-
-        res = {
-            'form_uuid': uuid,
-            'submission_data': form.submission_data
-        }
+        try:
+            form.write(vals)
+            if vals.get('state') == FORM_STATE_COMPLETE:
+                form.after_submit()
+            elif vals.get('state') == FORM_STATE_DRAFT:
+                form.after_save_draft()
+            log_form_submisssion(form)
+            res['submission_data'] = form.submission_data
+        except Exception as e:
+            formio_exception = FormioException(e, form=form)
+            error_message, error_traceback = formio_exception.render_exception_submit()
+            res['error_message'] = error_message
+            if request.session.debug and request.env.user.has_group('base.group_user'):
+                res['error_traceback'] = error_traceback
+            form.write({'state': 'ERROR'})
         return request.make_json_response(res)
 
     #########
@@ -204,10 +228,22 @@ class FormioController(http.Controller):
         return form.builder_id._get_form_js_locales()
 
     def _get_form_js_params(self, form):
-        return form._get_js_params()
+        params = form._get_js_params()
+        args = request.httprequest.args
+        args_dict = args.to_dict()
+        if bool(args_dict):
+            params = update_dict_allowed_keys(
+                params,
+                args_dict,
+                self._allowed_form_js_params_from_url(form.builder_id),
+            )
+        return params
 
     def _get_form(self, uuid, mode):
         return request.env['formio.form'].get_form(uuid, mode)
+
+    def _allowed_form_js_params_from_url(self, builder):
+        return builder._allowed_form_js_params_from_url()
 
     def validate_csrf(self):
         validate_csrf(request)
