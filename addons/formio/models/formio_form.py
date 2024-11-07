@@ -1,7 +1,6 @@
 # Copyright Nova Code (http://www.novacode.nl)
 # See LICENSE file for full licensing details.
 
-import ast
 import json
 import logging
 import uuid
@@ -12,7 +11,7 @@ from odoo import api, fields, models, _
 from odoo.addons.base.models.res_partner import _tz_get
 from odoo.exceptions import AccessError, UserError
 
-from ..utils import get_field_selection_label
+from ..utils import get_field_selection_label, json_loads
 
 from .formio_builder import (
     STATE_DRAFT as BUILDER_STATE_DRAFT,
@@ -25,6 +24,7 @@ _logger = logging.getLogger(__name__)
 STATE_PENDING = 'PENDING'
 STATE_DRAFT = 'DRAFT'
 STATE_COMPLETE = 'COMPLETE'
+STATE_ERROR = 'ERROR'
 STATE_CANCEL = 'CANCEL'
 
 
@@ -58,10 +58,16 @@ class Form(models.Model):
         string='UUID')
     title = fields.Char(string='Title', required=True, index=True, tracking=True)
     state = fields.Selection(
-        [(STATE_PENDING, 'Pending'), (STATE_DRAFT, 'Draft'),
-         (STATE_COMPLETE, 'Completed'), (STATE_CANCEL, 'Canceled')],
-        string="State", default=STATE_PENDING, tracking=True, index=True)
-    display_state = fields.Char("Display State", compute='_compute_display_fields', store=False)
+        selection=[
+            (STATE_PENDING, 'Pending'),
+            (STATE_DRAFT, 'Draft'),
+            (STATE_ERROR, 'Error'),
+            (STATE_COMPLETE, 'Completed'),
+            (STATE_CANCEL, 'Canceled'),
+        ],
+        string='State', default=STATE_PENDING, tracking=True, index=True
+    )
+    display_state = fields.Char('Display State', compute='_compute_display_fields', store=False)
     kanban_group_state = fields.Selection(
         [('A', 'Pending'), ('B', 'Draft'), ('C', 'Completed'), ('D', 'Canceled')],
         compute='_compute_kanban_group_state', store=True)
@@ -94,6 +100,10 @@ class Form(models.Model):
         help='User who submitted the form.')
     submission_partner_id = fields.Many2one('res.partner', related='submission_user_id.partner_id', string='Submission Partner')
     submission_partner_name = fields.Char(related='submission_partner_id.name', string='Submission Partner Name')
+    submission_commercial_partner_id = fields.Many2one(
+        related='submission_user_id.partner_id.commercial_partner_id',
+        string='Submission Commercial Entity'
+    )
     submission_date = fields.Datetime(
         string='Submission Date', readonly=True, tracking=True,
         help='Datetime when the form was last submitted.')
@@ -123,6 +133,7 @@ class Form(models.Model):
         "iFrame Resizer bodyMargin",
         related="builder_id.iframe_resizer_body_margin",
     )
+    full_width = fields.Boolean(related='builder_id.full_width')
     languages = fields.One2many('res.lang', related='builder_id.languages', string='Languages')
     allow_unlink = fields.Boolean("Allow delete", compute='_compute_access')
     allow_force_update_state = fields.Boolean("Allow force update State", compute='_compute_access')
@@ -151,12 +162,10 @@ class Form(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        res = self  # TODO self.env['formio.form']
         for vals in vals_list:
             vals = self._prepare_create_vals(vals)
-            rec = super(Form, self).create(vals)
-            rec._after_create(vals)
-            res |= rec
+        res = super().create(vals_list)
+        res._after_create()
         return res
 
     def write(self, vals):
@@ -175,7 +184,8 @@ class Form(models.Model):
                 partner = self.env['res.partner'].browse(vals.get('partner_id'))
                 if partner.tz:
                     vals['submission_timezone'] = partner.tz
-        self._after_write(vals)
+        if not self._context.get('no_after_write'):
+            self._after_write()
         return res
 
     def _prepare_create_vals(self, vals):
@@ -218,11 +228,13 @@ class Form(models.Model):
                 vals['submission_timezone'] = self.env.user.partner_id.tz
         return vals
 
-    def _after_create(self, vals):
-        self._process_api_components(vals)
+    def _after_create(self):
+        for rec in self:
+            rec._process_api_components()
 
-    def _after_write(self, vals):
-        self._process_api_components(vals)
+    def _after_write(self):
+        for rec in self:
+            rec._process_api_components()
 
     def _clear_res_fields(self):
         vals = {
@@ -235,22 +247,21 @@ class Form(models.Model):
         }
         self.write(vals)
 
-    def _process_api_components(self, vals):
-        if vals.get('submission_data') and self.builder_id.component_partner_email:
-            submission_data = self._decode_data(vals['submission_data'])
-
+    def _process_api_components(self):
+        _logger.warning('DEPRECATION _process_api_components: partner creation will be removed from Odoo 18')
+        if self.submission_data and self.builder_id.component_partner_email:
+            submission_data = json.loads(self.submission_data)
             if submission_data.get(self.builder_id.component_partner_email):
                 partner_email = submission_data.get(self.builder_id.component_partner_email)
                 partner_model = self.env['res.partner']
                 partner = partner_model.search([('email', '=', partner_email)])
-
                 if not partner:
                     # Only create partner, don't update fields if exist already!
                     default_partner_vals = {'email': partner_email}
                     partner_vals = self._prepare_partner_vals(submission_data, default_partner_vals)
                     partner = partner_model.create(partner_vals)
                 if len(partner) == 1:
-                    self.write({'partner_id': partner.id})
+                    self.with_context(no_after_write=True).write({'partner_id': partner.id})
                     if self.builder_id.component_partner_add_follower:
                         self.message_subscribe(partner_ids=partner.ids)
                 elif len(partner) > 1:
@@ -363,25 +374,25 @@ class Form(models.Model):
     def _decode_data(self, data):
         """ Convert data (str) to dictionary
 
-        json.loads(data) refuses identifies with single quotes.Use
-        ast.literal_eval() instead.
-
         :param str data: submission_data string
         :return str data: submission_data as dictionary
         """
-        try:
-            data = json.loads(data)
-        except:
-            data = ast.literal_eval(data)
+        data = json_loads(data)
         return data
 
     def after_submit(self):
-        """ Function is called everytime a form is submitted. """
-        pass
+        """ Method is called everytime a form is submitted. """
+        for action in self.builder_id.server_action_ids.sorted(key='sequence').filtered(
+            lambda a: a.formio_form_execute_after_action in ['submit', 'submit_save_draft']
+        ):
+            action.with_context(active_model=self._name, active_id=self.id).run()
 
     def after_save_draft(self):
-        """ Function is called everytime a form is save as draft. """
-        pass
+        """ Method is called everytime a form is save as draft. """
+        for action in self.builder_id.server_action_ids.sorted(key='sequence').filtered(
+            lambda a: a.formio_form_execute_after_action in ['save_draft', 'submit_save_draft']
+        ):
+            action.with_context(active_model=self._name, active_id=self.id).run()
 
     def action_view_formio(self):
         # return {
@@ -626,7 +637,7 @@ class Form(models.Model):
         return {}
 
     def _generate_odoo_domain(self, domain=[], params={}):
-        return self.builder_id._generate_odoo_domain(domain, params)
+        return self.builder_id._generate_odoo_domain(domain=domain, params=params)
 
     def i18n_translations(self):
         i18n = self.builder_id.i18n_translations()

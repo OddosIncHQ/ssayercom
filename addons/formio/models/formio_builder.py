@@ -1,7 +1,6 @@
 # Copyright Nova Code (http://www.novacode.nl)
 # See LICENSE file for full licensing details.
 
-import ast
 import json
 import re
 import uuid
@@ -10,7 +9,7 @@ from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 from odoo.http import request
 
-from ..utils import get_field_selection_label
+from ..utils import get_field_selection_label, json_loads
 
 STATE_DRAFT = 'DRAFT'
 STATE_CURRENT = 'CURRENT'
@@ -47,6 +46,7 @@ class Builder(models.Model):
         "Title", required=True,
         help="The form title in the current language", tracking=True)
     description = fields.Text("Description")
+    active = fields.Boolean(default=True, tracking=True)
     formio_version_id = fields.Many2one(
         'formio.version', string='formio.js version', required=True,
         default=lambda self: self._default_formio_version_id(), tracking=True,
@@ -59,6 +59,9 @@ class Builder(models.Model):
     formio_js_options = fields.Text(
         default=lambda self: self._default_formio_js_options(),
         string='formio.js Javascript Options')
+    formio_form_model_id = fields.Many2one(
+        "ir.model", compute='_compute_formio_form_model_id'
+    )
     res_model_id = fields.Many2one(
         "ir.model", compute='_compute_res_model_id', store=True,
         string="Model", help="Model as resource this form represents or acts on")
@@ -69,6 +72,7 @@ class Builder(models.Model):
         ondelete='restrict', tracking=True,
         help="Model as resource this form represents or acts on")
     schema = fields.Text("JSON Schema")
+    is_schema_empty = fields.Boolean(default=True, compute='_compute_is_schema_empty')
     edit_url = fields.Char(compute='_compute_edit_url', readonly=True)
     act_window_url = fields.Char(compute='_compute_act_window_url', readonly=True)
     state = fields.Selection(
@@ -97,10 +101,10 @@ class Builder(models.Model):
     version_comment = fields.Text("Version Comment")
     user_id = fields.Many2one('res.users', string='Assigned user', tracking=True)  # TODO old field, remove?
     forms = fields.One2many('formio.form', 'builder_id', string='Forms')
-    forms_count = fields.Integer(string='Forms Count', compute='_compute_forms_count')
+    forms_count = fields.Integer(compute='_compute_count_fields')
     backend_use_draft = fields.Boolean(
         string='Use Draft in Backend',
-        default=False,
+        default=True,
         help='Allows to use this Form Builder in state Draft, when adding/choosing a new Form in the backend.'
     )
     backend_use_obsolete = fields.Boolean(
@@ -201,6 +205,7 @@ class Builder(models.Model):
     show_form_state = fields.Boolean("Show Form State", tracking=True, help="Show the state in the Form header.", default=True)
     show_form_user_metadata = fields.Boolean(
         "Show User Metadata", tracking=True, help="Show submission and assigned user metadata in the Form header.", default=True)
+    full_width = fields.Boolean(default=False)
     iframe_resizer_body_margin = fields.Char(
         "iFrame Resizer bodyMargin", tracking=True,
         help="""\
@@ -213,15 +218,6 @@ class Builder(models.Model):
     wizard = fields.Boolean("Wizard", tracking=True)
     wizard_on_next_page_save_draft = fields.Boolean("Wizard on Next Page Save Draft", tracking=True)
     wizard_on_change_page_save_draft = fields.Boolean("Wizard on Change Page Save Draft", tracking=True)
-    # submission_url_add_query_params_from = fields.Selection(
-    #     string="Add Query Params to Submission URL from",
-    #     selection=[
-    #         ("window", "Window iframe (src)"),
-    #         ("window.parent", "Window parent (URL)"),
-    #     ],
-    #     tracking=True,
-    #     help="Enables adding the URL query params from the window's iframe (src) or window.parent to the form submission URL endpoint.",
-    # )
     backend_submission_url_add_query_params_from = fields.Selection(
         string="Backend Add Query Params to Submission URL from",
         selection=[
@@ -243,6 +239,7 @@ class Builder(models.Model):
         compute='_compute_debug_mode'
     )
     translations = fields.One2many('formio.builder.translation', 'builder_id', string='Translations', copy=True)
+    translations_count = fields.Integer(compute='_compute_count_fields')
     languages = fields.One2many('res.lang', compute='_compute_languages', string='Languages')
     allow_force_update_state_group_ids = fields.Many2many(
         'res.groups', string='Allow groups to force update State',
@@ -261,6 +258,7 @@ class Builder(models.Model):
         string='Server Actions',
         domain="[('model_name', '=', 'formio.form')]"
     )
+    server_action_count = fields.Integer(compute='_compute_count_fields')
     hook_api_validation = fields.Boolean(
         string='Hook Validation API', default=False, copy=True)
     overlay_api_change = fields.Boolean(
@@ -346,16 +344,10 @@ class Builder(models.Model):
     def _decode_schema(self, schema):
         """ Convert schema (str) to dictionary
 
-        json.loads(data) refuses identifies with single quotes.Use
-        ast.literal_eval() instead.
-
         :param str schema: schema string
         :return str schema: schema as dictionary
         """
-        try:
-            schema = json.loads(schema)
-        except Exception:
-            schema = ast.literal_eval(schema)
+        schema = json_loads(schema)
         return schema
 
     def _search_display_name_full(self, operator, value):
@@ -386,6 +378,10 @@ class Builder(models.Model):
                 del schema['display']
                 self.schema = json.dumps(schema)
 
+    def _compute_formio_form_model_id(self):
+        for r in self:
+            r.formio_form_model_id = self.env.ref('formio.model_formio_form').id
+
     @api.depends('formio_res_model_id')
     def _compute_res_model_id(self):
         for r in self:
@@ -405,6 +401,11 @@ class Builder(models.Model):
             else:
                 r.display_name_full = _("{title} (state: {state}, version: {version})").format(
                     title=r.title, state=r.display_state, version=r.version)
+
+    @api.depends('schema')
+    def _compute_is_schema_empty(self):
+        for r in self:
+            r.is_schema_empty = not r.schema
 
     @api.depends('public')
     def _compute_public_url(self):
@@ -489,6 +490,23 @@ class Builder(models.Model):
             "context": {}
         }
 
+    def action_view_server_actions(self):
+        tree_view = self.env.ref('formio.view_server_action_tree')
+        return {
+            'name': 'Server Actions',
+            'type': 'ir.actions.act_window',
+            'res_model': 'ir.actions.server',
+            'view_mode': 'tree,form',
+            'views': [(tree_view.id, 'tree'), (False, 'form')],
+            'target': 'current',
+            'domain': [('formio_builder_ids', '=', [self.id])],
+            "context": {
+                'default_model_id': self.env.ref('formio.model_formio_form').id,
+                'default_formio_form_execute_after_action': 'submit',
+                'default_state': 'code'
+            }
+        }
+
     def action_view_forms(self):
         forms_view = self.env.ref('formio.view_formio_form_tree')
         return {
@@ -502,8 +520,10 @@ class Builder(models.Model):
             'context': {}
         }
 
-    def _compute_forms_count(self):
+    def _compute_count_fields(self):
         for r in self:
+            r.translations_count = len(r.translations)
+            r.server_action_count = len(r.server_action_ids)
             r.forms_count = len(r.forms)
 
     def action_draft(self):
@@ -575,10 +595,7 @@ class Builder(models.Model):
         """ formio.js (API) options """
 
         if self.formio_js_options:
-            try:
-                options = json.loads(self.formio_js_options)
-            except Exception:
-                options = ast.literal_eval(self.formio_js_options)
+            options = json_loads(self.formio_js_options)
         else:
             options = {}
 
@@ -616,6 +633,11 @@ class Builder(models.Model):
             'backend_submission_url_add_query_params_from': self.backend_submission_url_add_query_params_from,
         }
         return params
+
+    def _allowed_form_js_params_from_url(self):
+        """ Allowed Form URL (querystring) params from the form it's
+        iframe src."""
+        return ['scroll_into_view_selector']
 
     @api.model
     def get_builder_uuid(self, uuid):

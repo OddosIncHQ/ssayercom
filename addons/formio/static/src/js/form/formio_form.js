@@ -154,6 +154,25 @@ export class OdooFormioForm extends Component {
                 self.csrfToken = res.csrf_token;
                 self.createForm();
             }
+            if (result.hasOwnProperty('error_message')) {
+                let error = $('#formio_form_server_error');
+                let errorMessage = $('#formio_form_server_error_message');
+                let errorTraceback = $('#formio_form_server_error_traceback');
+                errorMessage.html(result['error_message']);
+                if (result.hasOwnProperty('error_traceback')) {
+                    errorTraceback.html(result['error_traceback']);
+                    errorTraceback.removeClass('d-none');
+                }
+                error.removeClass('d-none');
+                // scroll embed and parent
+                window.scrollTo(0, 0);
+                window.parent.postMessage({odooFormioMessage: 'formioScrollTop', params: {}});
+                // disables action buttons (submit, saveDraft)
+                FormioUtils.eachComponent(form.components, (component) => {
+                    component.disabled = true;
+                }, true);
+                form.redraw();
+            }
         });
     }
 
@@ -176,6 +195,7 @@ export class OdooFormioForm extends Component {
         const hasChanged = typeof changed !== 'undefined' && typeof changed.changed !== 'undefined';
         if (hasChanged) {
             if (changed.changed.component) {
+                self.ensureSubmissionMetadata(form);
                 const component = changed.changed.component;
                 const instance = changed.changed.instance;
                 if (component.properties.hasOwnProperty('change')) {
@@ -367,17 +387,11 @@ export class OdooFormioForm extends Component {
     }
 
     getData(url, data) {
-        let dataPost = {...data};
-        if (this.formUuid) {
-            dataPost['form_uuid'] = this.formUuid;
-        }
-        dataPost['csrf_token'] = this.csrfToken;
         return $.ajax(
             {
                 url: url,
-                method: 'POST',
+                method: 'GET',
                 contentType: 'application/json',
-                data: JSON.stringify(dataPost)
             }
         );
     }
@@ -435,7 +449,8 @@ export class OdooFormioForm extends Component {
                 else {
                     next();
                 }
-            }
+            },
+            ...self['options']['hooks']
         };
         Formio.createForm(document.getElementById('formio_form'), self.schema, self.options).then(function(form) {
             let buttons = document.querySelectorAll('.formio_languages button');
@@ -513,8 +528,29 @@ export class OdooFormioForm extends Component {
 
             form.on('submit', function(submission) {
                 const data = {'data': submission.data};
-                self.postData(self.submitUrl, data).then(function() {
-                    form.emit('submitDone', submission);
+                self.postData(self.submitUrl, data).then(function(res) {
+                    if (res.hasOwnProperty('error_message')) {
+                        let error = $('#formio_form_server_error');
+                        let errorMessage = $('#formio_form_server_error_message');
+                        let errorTraceback = $('#formio_form_server_error_traceback');
+                        errorMessage.html(res['error_message']);
+                        if (res.hasOwnProperty('error_traceback')) {
+                            errorTraceback.html(res['error_traceback']);
+                            errorTraceback.removeClass('d-none');
+                        }
+                        error.removeClass('d-none');
+                        // scroll embed and parent
+                        window.scrollTo(0, 0);
+                        window.parent.postMessage({odooFormioMessage: 'formioScrollTop', params: {}});
+                        // disables action buttons (submit, saveDraft)
+                        FormioUtils.eachComponent(form.components, (component) => {
+                            component.disabled = true;
+                        }, true);
+                        form.redraw();
+                    }
+                    else {
+                        form.emit('submitDone', submission);
+                    }
                     self.hideOverlay();
                 });
             });
@@ -561,7 +597,26 @@ export class OdooFormioForm extends Component {
                 }
                 self.getData(submissionUrl, {}).then(function(result) {
                     if (!$.isEmptyObject(result)) {
-                        form.submission = {'data': result};
+                        form.submission = {'data': result['submission']};
+                    }
+                    if (result.hasOwnProperty('error_message')) {
+                        let error = $('#formio_form_server_error');
+                        let errorMessage = $('#formio_form_server_error_message');
+                        let errorTraceback = $('#formio_form_server_error_traceback');
+                        errorMessage.html(result['error_message']);
+                        if (result.hasOwnProperty('error_traceback')) {
+                            errorTraceback.html(result['error_traceback']);
+                            errorTraceback.removeClass('d-none');
+                        }
+                        error.removeClass('d-none');
+                        // scroll embed and parent
+                        window.scrollTo(0, 0);
+                        window.parent.postMessage({odooFormioMessage: 'formioScrollTop', params: {}});
+                        // disables action buttons (submit, saveDraft)
+                        FormioUtils.eachComponent(form.components, (component) => {
+                            component.disabled = true;
+                        }, true);
+                        form.redraw();
                     }
                     self.hideOverlay();
                 });
@@ -708,6 +763,25 @@ export class OdooFormioForm extends Component {
         else {
             // not really ok, but could work
             return language.slice(0, 2);
+        }
+    }
+
+    /**
+     * Ensure the submission always has default metadata and selectData.
+     *
+     * This is a workaround (formio.js 4.18.2, 4.19.3) to prevent the change
+     * event from crashing due to missing metadata.selectData.
+     * This affects the change event on a selectboxes component with URL as a
+     * Data Source Type.
+     *
+     * @param form: The form instance
+     */
+    ensureSubmissionMetadata(form) {
+        if (!form.submission.metadata) {
+            form.submission.metadata = {};
+        }
+        if (!form.submission.metadata.selectData) {
+            form.submission.metadata.selectData = {};
         }
     }
 }

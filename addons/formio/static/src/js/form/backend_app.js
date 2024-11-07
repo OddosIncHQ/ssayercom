@@ -94,7 +94,16 @@ function app() {
         }
 
         scrollParent() {
-            window.parent.postMessage({odooFormioMessage: 'formioScrollTop', params: {}});
+            if (this.params.hasOwnProperty('scroll_into_view_selector')
+                && this.params.scroll_into_view_selector) {
+                const params = {
+                    scroll_into_view_selector: this.params.scroll_into_view_selector
+                };
+                window.parent.postMessage({odooFormioMessage: 'formioScrollIntoView', params: params});
+            }
+            else {
+                window.parent.postMessage({odooFormioMessage: 'formioScrollTop', params: {}});
+            }
         }
     }
 

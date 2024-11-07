@@ -210,13 +210,11 @@ function app() {
         }
 
         getData(url, data) {
-            let dataPost = {...data};
             return $.ajax(
                 {
                     url: url,
-                    method: 'POST',
+                    method: 'GET',
                     contentType: 'application/json',
-                    data: JSON.stringify(dataPost)
                 }
             );
         }
@@ -378,5 +376,5 @@ function app() {
 async function start() {
     await whenReady();
     app();
-};
+}
 start();

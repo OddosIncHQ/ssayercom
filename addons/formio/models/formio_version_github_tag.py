@@ -22,7 +22,6 @@ class VersionGitHubTag(models.Model):
     _name = 'formio.version.github.tag'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'formio.js Version GitHub Tag'
-    #_order = 'create_date desc, id asc'
     order = 'write_date desc, id desc'
 
     # IMPORTANT NOTES
@@ -82,9 +81,6 @@ class VersionGitHubTag(models.Model):
         # `_get_path` function:
         #     we use '/' in the db (even on windows)
 
-        if self.formio_version_id:
-            return
-
         # dirs, paths
         IrAttachment = self.env['ir.attachment']
         archive_dir = 'formiojs/archive'
@@ -118,30 +114,39 @@ class VersionGitHubTag(models.Model):
 
             version_model = self.env['formio.version'].sudo()
             asset_model = self.env['formio.version.asset'].sudo()
+            default_asset_css_model = self.env['formio.default.asset.css'].sudo()
             attachment_model = self.env['ir.attachment']
 
-            # First delete if any already. If repeating download/install.
-            domain = [('name', '=', self.version_name)]
-            version_model.search(domain).unlink()
+            new_version = True
+            # domain = [('id', '=', self.formio_version_id.id)]
+            # version = version_model.search(domain, limit=1)
+            version = version_model.browse(self.formio_version_id.id)
 
-            vals = {
-                'name': self.version_name,
-            }
-            version = version_model.create(vals)
-            version.action_add_base_translations()
+            if version:
+                default_asset_css = default_asset_css_model.search([])
+                version.assets.filtered(lambda a: a.attachment_id.id not in default_asset_css.mapped('attachment_id').ids).unlink()
+                new_version = False
+            else:
+                vals = {
+                    'name': self.version_name,
+                }
+                version = version_model.create(vals)
+                version.action_add_base_translations()
 
             ################
             # default assets
             ###############
             assets_vals_list = []
-            default_assets_css = self.env['formio.default.asset.css'].search([])
-            for css in default_assets_css:
-                default_asset_vals = {
-                    'version_id': version.id,
-                    'attachment_id': css.attachment_id.id,
-                    'type': 'css'
-                }
-                assets_vals_list.append(default_asset_vals)
+
+            if new_version:
+                default_assets_css = self.env['formio.default.asset.css'].search([])
+                for css in default_assets_css:
+                    default_asset_vals = {
+                        'version_id': version.id,
+                        'attachment_id': css.attachment_id.id,
+                        'type': 'css'
+                    }
+                    assets_vals_list.append(default_asset_vals)
 
             ###################################################
             # https://github.com/formio/formio.js - LICENSE.txt
@@ -255,8 +260,6 @@ class VersionGitHubTag(models.Model):
 
     def action_reset_installed(self):
         if self.formio_version_id:
-            vals = {'formio_version_id': False, 'state': STATE_AVAILABLE}
-            self.write(vals)
             self.action_download_install()
 
     def _tar_extract_members(self, members):

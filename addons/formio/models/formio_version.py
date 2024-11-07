@@ -13,6 +13,11 @@ class Version(models.Model):
     name = fields.Char(
         "Name", required=True, tracking=True,
         help="""formio.js release/version.""")
+    formio_version_github_tag_id = fields.Many2one(
+        'formio.version.github.tag',
+        compute='_compute_formio_version_github_tag',
+        string='formio.js version'
+    )
     active = fields.Boolean(string="Active", default=True, tracking=True)
     sequence = fields.Integer()
     description = fields.Text("Description")
@@ -30,6 +35,12 @@ class Version(models.Model):
     license_assets = fields.One2many(
         'formio.version.asset', 'version_id',  domain=[('type', '=', 'license')], copy=True,
         string='License Assets')
+
+    def _compute_formio_version_github_tag(self):
+        GitHubTag = self.env['formio.version.github.tag']
+        for rec in self:
+            domain = [('formio_version_id', '=', rec.id)]
+            rec.formio_version_github_tag_id = GitHubTag.search(domain, limit=1).id
 
     def unlink(self):
         self.assets.unlink()
@@ -50,6 +61,10 @@ class Version(models.Model):
         if 'name' in vals:
             self._update_versions_sequence()
         return res
+
+    def action_reset_download_install(self):
+        for rec in self:
+            rec.formio_version_github_tag_id.action_reset_installed()
 
     def action_add_base_translations(self):
         """ Actually this should be re-implemented to a wizard.

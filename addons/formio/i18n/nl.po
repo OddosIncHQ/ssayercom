@@ -165,7 +165,7 @@ msgid ""
 "Forms</a> \n"
 "    </p>\n"
 "</div>\n"
-"            "
+
 msgstr ""
 "<div style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
 "    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
@@ -753,7 +753,7 @@ msgstr ""
 
 #. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.view_formio_version_github_tag_form
-msgid "Are you sure to reset (download and install again)?"
+msgid "Are you sure to reset (download and reinstall)?"
 msgstr ""
 "Weet je zeker dat je wilt resetten (downloaden en opnieuw installeren)?"
 
@@ -2319,8 +2319,8 @@ msgstr ""
 
 #. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.view_formio_version_github_tag_form
-msgid "Reset (download and install again)"
-msgstr "Reset (downloaden en installeer)"
+msgid "Reset (download and reinstall)"
+msgstr "Reset (downloaden en herinstalleer)"
 
 #. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.portal_my_formio
