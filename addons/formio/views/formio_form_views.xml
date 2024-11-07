@@ -10,6 +10,7 @@ See LICENSE file for full licensing details. -->
             <tree string="Form Submissions"
                   decoration-info="state in ('DRAFT')"
                   decoration-success="state in ('COMPLETE')"
+                  decoration-danger="state in ('ERROR')"
                   decoration-muted="state in ('CANCEL')">
                 <field name="id"/>
                 <field name="uuid" optional="hide"/>
@@ -18,6 +19,7 @@ See LICENSE file for full licensing details. -->
                 <field name="builder_id"/>
                 <field name="user_id"/>
                 <field name="submission_partner_id"/>
+                <field name="submission_commercial_partner_id" optional="hide"/>
                 <field name="submission_date"/>
                 <field name="state"/>
                 <button
@@ -133,6 +135,7 @@ See LICENSE file for full licensing details. -->
                 <field name="submission_date"/>
                 <field name="submission_data"/>
                 <field name="iframe_resizer_body_margin"/>
+                <field name="full_width"/>
             </formio_form>
         </field>
     </record>
@@ -157,10 +160,11 @@ See LICENSE file for full licensing details. -->
                     <button
                         name="action_cancel" type="object" string="Cancel"
                         invisible="state == 'CANCEL' or allow_force_update_state == False"/>
-                    <button 
+                    <button
                         name="action_copy_to_current" type="object" string="Copy To Current"
                         invisible="allow_copy == False or copy_to_current == False"/>
-                    <field name="state" widget="statusbar" statusbar_visible="PENDING,DRAFT,COMPLETE,CANCEL"/>
+                    <field name="state" widget="statusbar" statusbar_visible="PENDING,DRAFT,COMPLETE,CANCEL" invisible="state == 'ERROR'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="PENDING,DRAFT,ERROR,COMPLETE,CANCEL" invisible="state != 'ERROR'"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
@@ -168,7 +172,7 @@ See LICENSE file for full licensing details. -->
                                 type="object"
                                 string="Form"
                                 aria-label="Form"
-                                class="oe_stat_button bg-secondary"
+                                class="oe_stat_button bg-primary formio_form"
                                 icon="fa-rocket">
                             <div class="o_stat_info o_field_widget">
                                 <span>Form</span>
@@ -190,9 +194,9 @@ See LICENSE file for full licensing details. -->
                     </div>
                     <group name="general">
                         <group>
-                            <field name="res_name" string="Resource" invisible="res_name == False"/>
                             <field name="builder_id" readonly="id != False" domain="builder_id_domain"/>
                             <field name="builder_id_domain" invisible="1"/>
+                            <field name="res_name" string="Resource" invisible="res_name == False"/>
                         </group>
                         <group>
                             <field name="id" invisible="id == False"/>
@@ -205,7 +209,10 @@ See LICENSE file for full licensing details. -->
                         <group invisible="builder_id == False">
                             <field name="invitation_mail_template_id" invisible="1"/>
                             <field name="user_id" groups="formio.group_formio_user_all_forms" readonly="state in ['COMPLETE', 'CANCEL']"/>
+                        </group>
+                        <group invisible="builder_id == False">
                             <field name="submission_partner_id" string="Submission Partner"/>
+                            <field name="submission_commercial_partner_id" invisible="submission_commercial_partner_id == submission_partner_id"/>
                             <field name="submission_user_id" groups="base.group_erp_manager" string="Submission User"/>
                             <field name="submission_date" string="Submission Date"/>
                         </group>
@@ -308,7 +315,7 @@ See LICENSE file for full licensing details. -->
             </search>
         </field>
     </record>
-    
+
     <!-- actions -->
     <record id="action_formio_form" model="ir.actions.act_window">
         <field name="name">Form Submissions</field>
