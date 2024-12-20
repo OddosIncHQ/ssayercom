@@ -1,9 +1,0 @@
-<odoo>
-    <record id="mail_alias_csv_file_parser" model="mail.alias">
-        <field name="alias_name">file-csv-cl</field>  <!-- Alias name is file-csv-cl -->
-        <field name="alias_domain">sstechs.io</field>  <!-- Domain is sstechs.io -->
-        <field name="alias_model_id" ref="model_csv_file_parser"/>  <!-- Reference the csv.file.parser model -->
-        <field name="alias_contact">followers</field>  <!-- This is usually 'followers' for typical alias setup -->
-        <field name="alias_force_thread_id" eval="False"/>  <!-- Optional: False to allow threading -->
-    </record>
-</odoo>

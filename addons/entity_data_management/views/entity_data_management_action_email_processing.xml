@@ -1,7 +1,0 @@
-<odoo>
-    <record id="action_email_processing" model="ir.actions.act_window">
-        <field name="name">Email Processing</field>
-        <field name="res_model">email.processing</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-</odoo>
