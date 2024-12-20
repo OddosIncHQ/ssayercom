@@ -4,7 +4,7 @@
         <field name="name">email.processing.tree</field>
         <field name="model">email.processing</field>
         <field name="arch" type="xml">
-            <tree string="Email Processing">
+            <list string="Email Processing">
                 <field name="name"/>
                 <field name="email_id"/>
                 <field name="sender"/>
@@ -12,7 +12,7 @@
                 <field name="received_date"/>
                 <field name="process_date"/>
                 <field name="processed"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -49,3 +49,4 @@
         </field>
     </record>
 </odoo>
+
